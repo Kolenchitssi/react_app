@@ -2,6 +2,7 @@ import style from './Main.module.scss';
 import Article from '../../components/Article/Article';
 import CounterOld from '../../components/Counter/CounterOld';
 import Counter from '../../components/Counter/Counter';
+import CounterNew from '../../components/Counter/CounterNew';
 
 function Main(): JSX.Element {
   return (
@@ -11,6 +12,7 @@ function Main(): JSX.Element {
       <CounterOld />
       <br />
       <Counter />
+      <CounterNew/>
     </section>
   )
 }
