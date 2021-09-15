@@ -9,10 +9,14 @@ function Main(): JSX.Element {
     <section className={style.main}>
       <Article articleID="article1" titleArticle="Title article1" articleText="text article1" />
       <Article articleID="article1" titleArticle="Title article1" articleText="text article1" />
-      <CounterOld />
-      <br />
-      <Counter />
-      <CounterNew/>
+      
+      <div>
+        <CounterOld />      
+        <Counter />
+        <Counter />
+        <Counter />
+        <CounterNew/>
+      </div>
     </section>
   )
 }

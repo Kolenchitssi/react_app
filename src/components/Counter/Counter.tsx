@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from '../../store/hook';
 import {
   decrement,
   increment,
-  // incrementByAmount,
+  incrementByAmount,
   // incrementAsync,
   selectCount
 } from './counterSliceReducer'
@@ -13,17 +13,24 @@ import {
 function Counter() {
   const count = useAppSelector(selectCount)
   const dispatch = useAppDispatch()
-  const [incrementAmount, setIncrementAmount] = useState('2')
+  const [incrementAmount, setIncrementAmount] = useState('2')  
 
   return (
     <div>
-      <h3> use createSelector  </h3>
+      <h3> use createSlice  </h3>
       <div className="row">
         <input
           aria-label="Set increment amount"
           value={incrementAmount}
           onChange={e => setIncrementAmount(e.target.value)}
         />
+         <button
+        className="btn btn-secondary"
+        aria-label="Increment value"
+        onClick={() => dispatch(incrementByAmount(Number(incrementAmount)))}
+      > 
+      Add value
+        </button>       
 
         <button
           className="btn btn-secondary"
