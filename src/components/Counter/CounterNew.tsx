@@ -7,6 +7,7 @@ function CounterNew() {
   const count = useSelector((state: any)=>state.newCounter.value)
   return (
     <div>
+      <h3> use createReducer and createAction </h3>
       <button
         className="btn btn-secondary"
         aria-label="Increment value"

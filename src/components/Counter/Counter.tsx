@@ -16,6 +16,7 @@ function Counter() {
 
   return (
     <div>
+      <h3> use createSelector  </h3>
       <div className="row">
         <input
           aria-label="Set increment amount"
