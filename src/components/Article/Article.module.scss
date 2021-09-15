@@ -1,0 +1,18 @@
+.article{
+min-width: 100%;
+background-color: rgb(180, 204, 226);
+border-bottom: 1px solid white;
+}
+
+.articleText {
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center; 
+}
+
+.textArea {
+  
+  width: 80%;
+  margin: 10px 5px;  
+}
