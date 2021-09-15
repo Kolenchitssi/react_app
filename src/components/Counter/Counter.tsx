@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+// import { useSelector, useDispatch } from 'react-redux'
+import { useAppSelector, useAppDispatch } from '../../store/hook';
 import {
   decrement,
   increment,
@@ -10,8 +11,8 @@ import {
 
 
 function Counter() {
-  const count = useSelector(selectCount)
-  const dispatch = useDispatch()
+  const count = useAppSelector(selectCount)
+  const dispatch = useAppDispatch()
   const [incrementAmount, setIncrementAmount] = useState('2')
 
   return (
