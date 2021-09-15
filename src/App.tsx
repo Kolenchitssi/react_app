@@ -3,14 +3,13 @@ import './App.scss';
 import Footer from './layout/Footer/Footer';
 import Main from './layout/Main/Main';
 import Header from './layout/Header/Header';
-import Router from './routes/Router';
+import MyRouter from './routes/Router';
 
 function App(): JSX.Element {
   return (
     <div className="App" >
-      <Header />
-      <Main />
-      <Router />
+      <Header />      
+      <MyRouter />
       <Footer />
     </div>
   );
