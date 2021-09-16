@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment, myCounter } from "./counterNewReducer";
+import { decrement, increment } from "./counterNewReducer";
 
 function CounterNew() {
   const dispatch = useDispatch();
