@@ -6,10 +6,10 @@ import {
   NavLink
 } from 'react-router-dom';
 
-import About from "../layout/About/About";
-import Counters from '../layout/Counters/Counters';
-import Main from "../layout/Main/Main";
-import NotFound from '../layout/NotFound/NotFound';
+import About from "../containers/About/About";
+import Counters from '../components/Counters/Counters';
+import Main from "../containers/Main/Main";
+import NotFound from '../containers/NotFound/NotFound';
 
 function MyRouter(): JSX.Element {
   return (   
