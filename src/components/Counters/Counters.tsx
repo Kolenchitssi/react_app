@@ -1,14 +1,12 @@
 import CounterOld from '../Counter/CounterOld';
-import Counter from '../Counter/Counter';
-import CounterNew from '../Counter/CounterNew';
+
+import CounterClassic from '../Counter/CounterClassic';
 
 function Counters () :JSX.Element {
   return (
     <div>
-    <CounterOld />      
-    <Counter />
-    <Counter />    
-    <CounterNew/>
+    <CounterOld />   
+    <CounterClassic/>
   </div>
   );
 }

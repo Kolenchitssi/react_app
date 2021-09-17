@@ -1,0 +1,7 @@
+const INCREMENT: string = 'INCREMENT';
+const DECREMENT: string = 'DECREMENT';
+
+type actionCounter ={
+  type: string;
+  payload: number;  
+}
