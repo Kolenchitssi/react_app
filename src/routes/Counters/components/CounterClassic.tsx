@@ -7,6 +7,8 @@ function CounterClassic():JSX.Element {
   const addValue:number = useAppSelector(state=>state.counterClassicReducer.addVal);
 
   const incrementNumber =(addVal:number) => {dispatch(setIncrement(1))}
+  const st=useAppSelector(state=>state);
+  console.log(st);
   
   return (
     <div>

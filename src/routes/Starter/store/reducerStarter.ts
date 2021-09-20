@@ -29,7 +29,7 @@ type reducerType = {
     EDIT_ARTICLE: () => ({...state, /*TODO*/}),    
   }  
 
-  return keyReducer[action.type]() ? keyReducer[action.type]: state;
+  return keyReducer[action.type] ? keyReducer[action.type](): state;
  }
 
  export default reducerStarter;
