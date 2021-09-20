@@ -15,7 +15,7 @@ import style from './Main.module.scss';
 
 
 import React, { Suspense } from 'react';
-const Article = React.lazy(() => import('../../components/Article/Article'));
+const Article = React.lazy(() => import('../../routes/Starter/components/Article/Article'));
 
 function Main(): JSX.Element {
   

@@ -1,5 +1,5 @@
 import styles from './Article.module.scss';
-import Button from '../Button/Button';
+import Button from '../../../../components/Button/Button';
 
 
 type propsArticle = {

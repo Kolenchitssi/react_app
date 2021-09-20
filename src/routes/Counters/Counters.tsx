@@ -1,6 +1,6 @@
-import CounterOld from '../Counter/CounterOld';
+import CounterOld from './components/CounterOld';
 
-import CounterClassic from '../Counter/CounterClassic';
+import CounterClassic from './components/CounterClassic';
 
 function Counters () :JSX.Element {
   return (

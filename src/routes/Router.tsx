@@ -13,7 +13,7 @@ import {
 // import NotFound from '../containers/NotFound/NotFound';
 const About = lazy(()=> import('../containers/About/About'));
 const Main = lazy(()=> import('../containers/Main/Main'));
-const Counters = lazy(()=> import('../components/Counters/Counters'));
+const Counters = lazy(()=> import('./Counters/Counters'));
 const NotFound = lazy(()=> import('../containers/NotFound/NotFound'));
 
 function MyRouter(): JSX.Element {

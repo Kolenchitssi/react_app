@@ -1,5 +1,5 @@
-import { setIncrement, setDecrement, setVal, addVal } from '../../store/counter/action'; 
-import { useAppSelector, useAppDispatch } from '../../store/hook';
+import { setIncrement, setDecrement, setVal, addVal } from '../store/action'; 
+import { useAppSelector, useAppDispatch } from '../../../store/hook';
 
 function CounterClassic():JSX.Element {
   const dispatch = useAppDispatch();

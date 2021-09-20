@@ -13,11 +13,15 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from "redux";
 import { createStore } from "redux";
 
-import { counterClassicReducer } from './counter/reducer';
+// import { counterClassicReducer } from '../routes/Counters/store/reducer';
+
+import counterClassicReducerObj  from '../routes/Counters/store/reducerCounter';
+import reducerStarter from '../routes/Starter/store/reducerStarter'
 
 
 const rootReducer = combineReducers({
-  counterClassicReducer,
+  counterClassicReducerObj,
+  reducerStarter,
 })
 
 export const store = createStore(rootReducer);
