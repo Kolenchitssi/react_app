@@ -3,8 +3,8 @@ import { useAppSelector, useAppDispatch } from '../../../store/hook';
 
 function CounterClassic():JSX.Element {
   const dispatch = useAppDispatch();
-  const count = useAppSelector(state=>state.counterClassicReducer.count);  
-  const addValue:number = useAppSelector(state=>state.counterClassicReducer.addVal);
+  const count = useAppSelector(state=>state.counterClassicReducerObj.count);  
+  const addValue:number = useAppSelector(state=>state.counterClassicReducerObj.addVal);
 
   const incrementNumber =(addVal:number) => {dispatch(setIncrement(1))}
   const st=useAppSelector(state=>state);

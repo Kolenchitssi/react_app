@@ -13,19 +13,19 @@
 import { combineReducers } from "redux";
 import { createStore } from "redux";
 
-import { counterClassicReducer } from '../routes/Counters/store/reducer';
+// import { counterClassicReducer } from '../routes/Counters/store/reducer';
 
-import counterClassicReducerObj  from '../routes/Counters/store/reducerCounter';
-import reducerStarter from '../routes/Starter/store/reducerStarter'
+import {counterClassicReducerObj}  from '../routes/Counters/store/reducerCounter';
+import {reducerStarter} from '../routes/Starter/modules/store/reducerStarter'
 
 
 const rootReducer = combineReducers({
-  counterClassicReducer,
+  // counterClassicReducer,
   counterClassicReducerObj,
   reducerStarter,
 })
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer,);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

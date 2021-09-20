@@ -1,40 +1,37 @@
-const INCREMENT: string = 'INCREMENT';
-const DECREMENT: string = 'DECREMENT';
-const SET_VAL: string = 'SET_VAL';
-const ADD_VAL: string = 'ADD_VAL';
+import { createAction } from "../../../store/utils";
 
-type actionCounter ={
-  type: string;
-  payload: number;  
-}
+const INCREMENT: string = "INCREMENT";
+const DECREMENT: string = "DECREMENT";
+const SET_VAL: string = "SET_VAL";
+const ADD_VAL: string = "ADD_VAL";
 
-export const setIncrement=(val:number):actionCounter=> {return (
-  {
-  type: INCREMENT,
-  payload: val,
-  }
-  )
-};
+export const setIncrement = createAction<number>(INCREMENT);
+export const setDecrement = createAction<number>(DECREMENT);
+export const setVal = createAction<number>(SET_VAL);
+export const addVal = createAction<number>(ADD_VAL);
 
-export const setDecrement=(val:number):actionCounter=> {return (
-  {
-  type: DECREMENT,
-  payload: val,
-  }
-  )
-};
+// type actionCounter = {
+//   type: string;
+//   payload: number;
+// };
 
-export const setVal=(val:number):actionCounter=> {return (
-  {
-  type: SET_VAL,
-  payload: val,
-  }
-  )
-};
-export const addVal=(val:number):actionCounter=> {return (
-  {
-  type: ADD_VAL,
-  payload: val,
-  }
-  )
-};
+// export const setDecrement = (val: number): actionCounter => {
+//   return {
+//     type: DECREMENT,
+//     payload: val,
+//   };
+// };
+
+// export const setVal = (val: number): actionCounter => {
+//   return {
+//     type: SET_VAL,
+//     payload: val,
+//   };
+// };
+
+// export const addVal = (val: number): actionCounter => {
+//   return {
+//     type: ADD_VAL,
+//     payload: val,
+//   };
+// };
