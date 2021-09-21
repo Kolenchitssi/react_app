@@ -7,9 +7,10 @@ export function createAction<B>(type: string): (payload: B) => BaseAction<B> {
 // numberAction=createAction<number>("INCREMENT");
 
 export function createReducer<S>(
-  listReducer: ReducerType<S>
-): (state: S, action: BaseAction<any>) => S {
-  return (state: S, action: BaseAction<any>) =>
+  listReducer: ReducerType<S>,
+  defaultState: S
+): (state: S | undefined, action: BaseAction<any>) => S {
+  return (state = defaultState, action: BaseAction<any>): S =>
     listReducer[action.type] ? listReducer[action.type](state, action) : state;
 }
 

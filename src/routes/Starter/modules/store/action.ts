@@ -15,7 +15,7 @@ export type ArticleType = {
 
 export const addArticle = createAction<ArticleType>(ADD_ARTICLE);
 export const removeArticle = createAction<ArticleType>(REMOVE_ARTICLE);
-export const editArticle = createAction<ArticleType>(REMOVE_ARTICLE);
+export const editArticle = createAction<ArticleType>(EDIT_ARTICLE);
 
 // export const addArticle = (article: ArticleType): BaseAction<ArticleType> => {
 //   return {
