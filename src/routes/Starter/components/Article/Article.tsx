@@ -13,9 +13,8 @@ type propsArticle = {
 function Article(props: propsArticle): JSX.Element {
   return (
     <article className={styles.article}>
-      <a href={`/article/${props.id}`}>
-        {" "}
-        <h4>{props.title}</h4>{" "}
+      <a href={`/article/${props.id}`} className={styles.titleArticle}>
+        <h4>{props.title}</h4>
       </a>
       <div className={styles.articleText}>
         <textarea
@@ -23,9 +22,17 @@ function Article(props: propsArticle): JSX.Element {
           name={props.title}
           id={props.id}
           defaultValue={props.text}
+          readOnly
         ></textarea>
         <Button typeButton="secondary" textButton="Edit" />
         <Button typeButton="secondary" textButton="Delete" />
+      </div>
+      <div className={styles.author}>
+        <p>{props.date}</p>
+        <p>
+          {"\u00A0"} | {"\u00A0"}
+        </p>
+        <p>{props.author}</p>
       </div>
     </article>
   );

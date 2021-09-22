@@ -1,0 +1,25 @@
+.paginate {
+  background-color: rgb(192, 232, 235);
+
+  ul {
+    border: 1px solid darkblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    li {
+      padding: 5px 1px;
+      font-weight: 700;
+
+      a {
+        text-decoration: none;
+        color: darkblue;
+
+        &:hover {
+          color: red;
+        }
+      }
+    }
+  }
+}
