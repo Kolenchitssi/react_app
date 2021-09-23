@@ -102,4 +102,99 @@ export const ArticleList: Array<propsArticle> = [
       return this.id + this.author;
     },
   },
+
+  {
+    id: "9",
+    title: "Title9",
+    text: "Text text  text text text text text text text text text 9999",
+    date: "20-09-2021",
+    author: "Author3",
+
+    get key() {
+      return this.id + this.author;
+    },
+  },
+
+  {
+    id: "10",
+    title: "Title10",
+    text: "Text text  text text text text text text text text text 10",
+    date: "20-09-2021",
+    author: "Author2",
+
+    get key() {
+      return this.id + this.author;
+    },
+  },
+
+  {
+    id: "11",
+    title: "Title11",
+    text: "Text text  text text text text text text text text text 11",
+    date: "22-09-2021",
+    author: "Author3",
+
+    get key() {
+      return this.id + this.author;
+    },
+  },
+
+  {
+    id: "12",
+    title: "Title12",
+    text: "Text   text text text text text text text text text 12",
+    date: "21-09-2021",
+    author: "Author4",
+
+    get key() {
+      return this.id + this.author;
+    },
+  },
+  {
+    id: "13",
+    title: "Title13",
+    text: "Text text555555555  text text text text text text text text text 13",
+    date: "20-09-2021",
+    author: "Author3",
+
+    get key() {
+      return this.id + this.author;
+    },
+  },
+
+  {
+    id: "14",
+    title: "Title14",
+    text: "Text6666666666 text  text text text text text text text text text 14",
+    date: "20-09-2021",
+    author: "Author2",
+
+    get key() {
+      return this.id + this.author;
+    },
+  },
+
+  {
+    id: "15",
+    title: "Title15",
+    text: "Text text  text text text text text text text text text 15",
+    date: "24-09-2021",
+    author: "Author5",
+
+    get key() {
+      return this.id + this.author;
+    },
+  },
+
+  {
+    id: "16",
+    title: "Title16",
+    text: "Text   text text text text text text text text text 16",
+    date: "24-09-2021",
+    author: "Author2",
+
+    get key() {
+      return this.id + this.author;
+    },
+  },
 ];

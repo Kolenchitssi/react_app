@@ -1,19 +1,35 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 
-import { NumberedDisplayedPages } from "../../components/NumberedDisplayedPages/NumberedDisplayedPages";
-import { Paginate } from "../../components/Paginate/Paginate";
-import { ArticleList } from "../Starter/components/Article/articlesList";
+import SelectApp from "./components/SelectApp/SelectApp";
+import Article from "./components/Article/Article";
+import { ArticleList } from "./components/Article/articlesList";
 import style from "./Main.module.scss";
 
 // import { Paginate } from "../../components/Paginate/Paginate";
 // import Select from 'react-select';
 
-import Article from "../Starter/components/Article/Article";
-
 function Main(): JSX.Element {
+  const [perPage, setPerPage] = useState(2); //количество статей на странице
+  const articleCount: number = ArticleList.length;
+  const pageCount: number = Math.ceil(articleCount / perPage);
+  const [currentPage, setCurrentPage] = useState(1); //текущая страница
+  const articleStart = currentPage * perPage;
+  const articleEnd = currentPage * perPage + perPage;
+  const selectedArticle = ArticleList.slice(articleStart, articleEnd);
   return (
     <section className={style.main}>
-      {ArticleList.map((items) => {
+      <p>
+        количество статей на странице {perPage} количество страниц {pageCount}{" "}
+        текущая страница {currentPage + 1}
+      </p>
+      <SelectApp
+        perPage={perPage}
+        setPerPage={setPerPage}
+        pageCount={pageCount}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
+      {selectedArticle.map((items) => {
         return (
           <Article
             id={items.id}
@@ -25,9 +41,14 @@ function Main(): JSX.Element {
           />
         );
       })}
-
       <div className={style.NumberedDisplayedPages}>
-        <NumberedDisplayedPages />
+        <SelectApp
+          perPage={perPage}
+          setPerPage={setPerPage}
+          pageCount={pageCount}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </section>
   );
