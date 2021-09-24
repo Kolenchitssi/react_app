@@ -16,7 +16,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author1",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 
@@ -28,7 +28,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author2",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 
@@ -40,7 +40,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author1",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 
@@ -52,7 +52,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author2",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
   {
@@ -63,7 +63,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author1",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 
@@ -75,7 +75,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author2",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 
@@ -87,7 +87,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author1",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 
@@ -99,7 +99,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author2",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 
@@ -111,7 +111,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author3",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 
@@ -123,7 +123,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author2",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 
@@ -135,7 +135,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author3",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 
@@ -147,7 +147,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author4",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
   {
@@ -158,7 +158,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author3",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 
@@ -170,7 +170,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author2",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 
@@ -182,7 +182,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author5",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 
@@ -194,7 +194,7 @@ export const ArticleList: Array<propsArticle> = [
     author: "Author2",
 
     get key() {
-      return this.id + this.author;
+      return this.id + this.author + this.date;
     },
   },
 ];

@@ -1,7 +1,7 @@
 import styles from "./Article.module.scss";
 import Button from "../../../../components/Button/Button";
 
-type propsArticle = {
+export type propsArticle = {
   id: string;
   key: string;
   title: string;

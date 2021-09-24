@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { Fragment, useCallback } from "react";
 import ReactPaginate from "react-paginate";
 import Select, { OptionTypeBase } from "react-select";
 
@@ -17,38 +17,45 @@ const options: SelectOption[] = [
   { value: 10, label: "ten" },
 ];
 
-type SelectAppType = {
+type Props = {
   perPage: number; //количество статей на странице
   setPerPage: (arg: number) => void;
   pageCount: number; //количество страниц
   currentPage: number;
   setCurrentPage: (arg: number) => void;
+  initialSetPageCount?: number;
+} & typeof defaultProps;
+
+const defaultProps = {
+  initialSetPageCount: 4,
 };
 
-function SelectApp(props: SelectAppType) {
-  // const handlePageClick = (selectedItem: { selected: number }) => {
-  //   props.setCurrentPage(selectedItem.selected);
-  // };
-
+function SelectApp({
+  perPage,
+  setPerPage,
+  pageCount,
+  currentPage,
+  setCurrentPage,
+}: Props) {
   const memoizeHandlePageClick = useCallback(
     (selectedItem: { selected: number }) => {
-      props.setCurrentPage(selectedItem.selected);
+      setCurrentPage(selectedItem.selected);
     },
-    [props.setCurrentPage]
+    [setCurrentPage]
   );
 
   const memoizeSetPerPage = useCallback(
     (e: SelectOption | null) => {
       if (e != null) {
-        props.setPerPage(e.value);
-        props.setCurrentPage(0);
+        setPerPage(e.value);
+        setCurrentPage(0);
       }
     },
-    [props.setPerPage]
+    [setPerPage, setCurrentPage]
   );
 
   return (
-    <div>
+    <Fragment>
       <div className={style.wrapper}>
         <div className={style.numberPages}>
           <span> The number of displayed pages:</span>
@@ -56,13 +63,13 @@ function SelectApp(props: SelectAppType) {
             className={style.select}
             defaultValue={options[0]}
             onChange={memoizeSetPerPage}
-            value={options.find((item) => item.value === props.perPage)}
+            value={options.find((item) => item.value === perPage)}
             options={options}
           />
           <div>
             <div className={style.paginate}>
               <ReactPaginate
-                pageCount={props.pageCount} //количество страниц
+                pageCount={pageCount} //количество страниц
                 pageRangeDisplayed={3} //количество цифр в центре
                 marginPagesDisplayed={2} //количество цифр по краям
                 previousLabel={"previous"}
@@ -72,7 +79,7 @@ function SelectApp(props: SelectAppType) {
                 breakLinkClassName={"break-link"}
                 onPageChange={memoizeHandlePageClick}
                 initialPage={0} //стартовая страница
-                forcePage={props.currentPage} //текущая страница
+                forcePage={currentPage} //текущая страница
                 disableInitialCallback={false}
                 containerClassName={"container"}
                 pageClassName={"page-li"}
@@ -90,8 +97,10 @@ function SelectApp(props: SelectAppType) {
           </div>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 }
+
+SelectApp.defaultProps = defaultProps;
 
 export default SelectApp;
