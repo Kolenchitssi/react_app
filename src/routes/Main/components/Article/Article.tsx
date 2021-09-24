@@ -1,7 +1,7 @@
 import styles from "./Article.module.scss";
 import Button from "../../../../components/Button/Button";
 
-export type propsArticle = {
+export type PropsArticle = {
   id: string;
   key: string;
   title: string;
@@ -10,7 +10,7 @@ export type propsArticle = {
   author: string;
 };
 
-function Article(props: propsArticle): JSX.Element {
+function Article(props: PropsArticle): JSX.Element {
   return (
     <article className={styles.article}>
       <a href={`/article/${props.id}`} className={styles.titleArticle}>

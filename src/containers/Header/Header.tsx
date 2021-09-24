@@ -1,5 +1,4 @@
 import styles from "./Header.module.scss";
-import Button from "../../components/Button/Button";
 
 function Header(): JSX.Element {
   return (

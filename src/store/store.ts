@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { counterClassicReducerObj } from "../routes/Counters/store/reducer";
 
-// import { reducerStarter } from "../routes/Starter/modules/store/reducerStarter";
+import { reducerStarter } from "../routes/Main/modules/store/reducer";
 
 let composeEnhancers = compose;
 
@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "development") {
 
 const rootReducer = combineReducers({
   counterClassicReducerObj,
-  // reducerStarter,
+  reducerStarter,
 });
 
 export const store = createStore(

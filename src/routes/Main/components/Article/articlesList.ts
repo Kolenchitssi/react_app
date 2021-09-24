@@ -1,13 +1,15 @@
-type propsArticle = {
-  id: string;
-  key: string;
-  title: string;
-  text: string;
-  date: string;
-  author: string;
-};
+import { PropsArticle } from "./Article";
 
-export const ArticleList: Array<propsArticle> = [
+// type propsArticle = {
+//   id: string;
+//   key: string;
+//   title: string;
+//   text: string;
+//   date: string;
+//   author: string;
+// };
+
+export const articlesList: Array<PropsArticle> = [
   {
     id: "1",
     title: "Title1",

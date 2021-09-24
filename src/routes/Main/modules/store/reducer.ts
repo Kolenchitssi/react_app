@@ -1,30 +1,20 @@
 import { BaseAction, ReducerType } from "../../../../store/models";
 import { createReducer } from "../../../../store/utils";
-import { ArticleType } from "./action";
+import { PropsArticle } from "../../components/Article/Article";
+import { articlesList } from "../../components/Article/articlesList";
 
 type StateLocal = {
-  // articles: Array<ArticleType>;
-  articles: ArticleType[];
+  articles: Array<PropsArticle>;
 };
 
-const defaultState: StateLocal = {
-  articles: [
-    {
-      id: 0,
-      key: "",
-      text: "",
-      date: "",
-      author: "",
-    },
-  ],
-};
+const defaultState: StateLocal = { articles: articlesList };
 
 const listReducer: ReducerType<StateLocal> = {
   ADD_ARTICLE: (
     state = defaultState,
-    action: BaseAction<ArticleType>
+    action: BaseAction<PropsArticle>
   ): StateLocal => {
-    const newArticle: ArticleType[] = state.articles.concat(action.payload);
+    const newArticle: PropsArticle[] = state.articles.concat(action.payload);
     return {
       ...state,
       articles: newArticle,
@@ -34,7 +24,7 @@ const listReducer: ReducerType<StateLocal> = {
   EDIT_ARTICLE: (state = defaultState) => ({ ...state /*TODO*/ }),
 };
 
-export const reducerStarter1 = createReducer<StateLocal>(
+export const reducerStarter = createReducer<StateLocal>(
   listReducer,
   defaultState
 );
