@@ -1,5 +1,6 @@
 import { BaseAction, ReducerType } from "../../../store/models";
 import { createReducer } from "../../../store/utils";
+import { ADD_VAL, DECREMENT, INCREMENT, SET_VAL } from "./action";
 
 type StateLocal = {
   count: number;
@@ -12,19 +13,19 @@ const defaultState: StateLocal = {
 };
 
 const listReducer: ReducerType<StateLocal> = {
-  DECREMENT: (state, action: BaseAction<number>) => ({
+  [DECREMENT]: (state, action: BaseAction<number>) => ({
     ...state,
     count: state.count - action.payload,
   }),
-  INCREMENT: (state, action: BaseAction<number>) => ({
+  [INCREMENT]: (state, action: BaseAction<number>) => ({
     ...state,
     count: state.count + action.payload,
   }),
-  SET_VAL: (state, action: BaseAction<number>) => ({
+  [SET_VAL]: (state, action: BaseAction<number>) => ({
     ...state,
     addVal: action.payload,
   }),
-  ADD_VAL: (state, action: BaseAction<number>) => ({
+  [ADD_VAL]: (state, action: BaseAction<number>) => ({
     ...state,
     count: state.count + action.payload,
   }),

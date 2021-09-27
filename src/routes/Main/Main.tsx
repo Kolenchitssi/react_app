@@ -8,48 +8,38 @@ import Button from "../../components/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { addArticle } from "./modules/store/action";
 import { RootState } from "../../store/models";
+import { MyForm } from "./components/Form/Form";
+import Modal from "./Modal/Modal";
+
+// ======================= create reselect===================================================
+
+const articlesSelector = createSelector(
+  (state: RootState) => state.reducerStarter,
+  (state: RootState, pageData: [number, number]) => pageData,
+  (articles, pageData) => {
+    console.log("сложная обработка", articles);
+    const [currentPage, perPage] = pageData;
+    const articleStart = currentPage * perPage;
+    const articleEnd = currentPage * perPage + perPage;
+    return articles.slice(articleStart, articleEnd);
+  }
+);
+//===========================================================================
 
 function Main(): JSX.Element {
-  // const [articles, setArticles] = useState(articlesList); //загрузка списка статей
-
-  // ======================= create reselect===================================================
-
-  // const getSelector = useAppSelector(
-  //   (state) => state.reducerStarter.articles  );
-  // нужна функция а не значение
-
-  //---1 ------
-  const getSelector2 = (state: RootState) => state.reducerStarter.articles;
-
-  const getCreateSelector = createSelector(getSelector2, (articles) => {
-    console.log("сложная обработка", articles);
-    return articles;
-  });
-
-  // ---2--- то же самое  но без отдельного селекта------
-  // const getCreateSelector = createSelector(
-  //   (state: RootState) => state.reducerStarter.articles,
-  //   (articles) => {
-  //     console.log("сложная обработка", articles);
-  //     return articles;
-  //   }
-  // );
-  //===========================================================================
-
   const dispatch = useAppDispatch();
-  const articles = useAppSelector((state) => getCreateSelector(state));
-
-  //  const articles = useAppSelector((state) =>state.reducerStarter.articles);
-
-  const [perPage, setPerPage] = useState(2); //количество статей на странице
-  const articleCount: number = articles.length;
-  const pageCount: number = Math.ceil(articleCount / perPage);
+  const [perPage, setPerPage] = useState(3); //количество статей на странице
   const [currentPage, setCurrentPage] = useState(1); //текущая страница
-  const articleStart = currentPage * perPage;
-  const articleEnd = currentPage * perPage + perPage;
-  const selectedArticle = articles.slice(articleStart, articleEnd);
+  const articleCount: number = useAppSelector(
+    (state) => state.reducerStarter
+  ).length;
+  const articles = useAppSelector((state) =>
+    articlesSelector(state, [currentPage, perPage])
+  );
 
-  const add = (currentArticles: Array<PropsArticle>) => {
+  const pageCount: number = Math.ceil(articleCount / perPage);
+
+  const add = (currentArticles: PropsArticle[]) => {
     const newArticle: PropsArticle = {
       title: "addTitle",
       text: "addText",
@@ -70,6 +60,13 @@ function Main(): JSX.Element {
 
   return (
     <section className={style.main}>
+      <div>
+        <Button
+          typeButton="secondary"
+          textButton="Add article Modal"
+          onClick={() => (window.location.href = "addArticle")}
+        />
+      </div>
       <div className={style.mainHeader}>
         <p>
           Количество статей на странице:{" "}
@@ -103,7 +100,7 @@ function Main(): JSX.Element {
           setCurrentPage={setCurrentPage}
         />
       </div>
-      {selectedArticle.map((items) => {
+      {articles.map((items) => {
         return (
           <Article
             id={items.id}

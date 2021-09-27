@@ -6,6 +6,7 @@ import {
   Link,
   NavLink,
 } from "react-router-dom";
+import { MyForm } from "./Main/components/Form/Form";
 
 // import About from '../containers/About/About';
 // import Counters from './Counters/Counters';
@@ -16,6 +17,7 @@ const About = lazy(() => import("./About/About"));
 const Main = lazy(() => import("./Main/Main"));
 const Counters = lazy(() => import("./Counters/Counters"));
 const NotFound = lazy(() => import("./NotFound/NotFound"));
+const Modal = lazy(() => import("./Main/Modal/Modal"));
 
 function MyRouter(): JSX.Element {
   return (
@@ -34,6 +36,9 @@ function MyRouter(): JSX.Element {
             <li>
               <Link to="/counters">Counters</Link>
             </li>
+            <li>
+              <Link to="/addArticle">Counters</Link>
+            </li>
           </ul>
         </nav>
 
@@ -49,6 +54,10 @@ function MyRouter(): JSX.Element {
 
             <Route path="/counters">
               <Counters />
+            </Route>
+
+            <Route path="/addArticle">
+              <MyForm />
             </Route>
 
             <Route>

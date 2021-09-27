@@ -2,9 +2,9 @@
 import { createAction } from "../../../../store/utils";
 import { PropsArticle } from "../../components/Article/Article";
 
-const ADD_ARTICLE: string = "ADD_ARTICLE";
-const REMOVE_ARTICLE: string = "REMOVE_ARTICLE";
-const EDIT_ARTICLE: string = "EDIT_ARTICLE";
+export const ADD_ARTICLE = "ADD_ARTICLE";
+export const REMOVE_ARTICLE = "REMOVE_ARTICLE";
+export const EDIT_ARTICLE = "EDIT_ARTICLE";
 
 export const addArticle = createAction<PropsArticle>(ADD_ARTICLE);
 export const removeArticle = createAction<PropsArticle>(REMOVE_ARTICLE);

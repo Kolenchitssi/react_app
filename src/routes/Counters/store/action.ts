@@ -1,9 +1,9 @@
 import { createAction } from "../../../store/utils";
 
-const INCREMENT: string = "INCREMENT";
-const DECREMENT: string = "DECREMENT";
-const SET_VAL: string = "SET_VAL";
-const ADD_VAL: string = "ADD_VAL";
+export const INCREMENT: string = "INCREMENT";
+export const DECREMENT: string = "DECREMENT";
+export const SET_VAL: string = "SET_VAL";
+export const ADD_VAL: string = "ADD_VAL";
 
 export const setIncrement = createAction<number>(INCREMENT);
 export const setDecrement = createAction<number>(DECREMENT);
