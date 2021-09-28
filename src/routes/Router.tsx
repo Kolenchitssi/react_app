@@ -17,7 +17,7 @@ const About = lazy(() => import("./About/About"));
 const Main = lazy(() => import("./Main/Main"));
 const Counters = lazy(() => import("./Counters/Counters"));
 const NotFound = lazy(() => import("./NotFound/NotFound"));
-const Modal = lazy(() => import("./Main/Modal/Modal"));
+// const Modal = lazy(() => import("./Main/Modal/Modal"));
 
 function MyRouter(): JSX.Element {
   return (
@@ -26,19 +26,27 @@ function MyRouter(): JSX.Element {
         <nav>
           <ul style={{ display: "flex", justifyContent: "space-evenly" }}>
             <li>
-              <Link to="/">Home</Link>
+              <NavLink className="nav-link" to="/">
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/about" activeClassName="hurray">
+              <NavLink
+                to="/about"
+                className="nav-link"
+                activeClassName="hurray"
+              >
                 About
               </NavLink>
             </li>
             <li>
-              <Link to="/counters">Counters</Link>
+              <NavLink to="/counters" className="nav-link">
+                Counters
+              </NavLink>
             </li>
-            <li>
-              <Link to="/addArticle">Counters</Link>
-            </li>
+            {/* <li>
+              <Link to="/addArticle">addArticle</Link>
+            </li> */}
           </ul>
         </nav>
 
@@ -56,8 +64,12 @@ function MyRouter(): JSX.Element {
               <Counters />
             </Route>
 
+            <Route path="/article/:id">
+              <MyForm typeAction="edit|view" articleId={"id"} />
+            </Route>
+
             <Route path="/addArticle">
-              <MyForm />
+              <MyForm typeAction="add" />
             </Route>
 
             <Route>

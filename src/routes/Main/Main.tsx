@@ -1,15 +1,13 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import { createSelector } from "reselect";
 
-import SelectApp from "./components/SelectApp/SelectApp";
-import Article, { PropsArticle } from "./components/Article/Article";
-import style from "./Main.module.scss";
 import Button from "../../components/Button/Button";
-import { useAppDispatch, useAppSelector } from "../../store/hook";
-import { addArticle } from "./modules/store/action";
+import { useAppSelector } from "../../store/hook";
 import { RootState } from "../../store/models";
-import { MyForm } from "./components/Form/Form";
-import Modal from "./Modal/Modal";
+import Article from "./components/Article/Article";
+import SelectApp from "./components/SelectApp/SelectApp";
+import style from "./Main.module.scss";
 
 // ======================= create reselect===================================================
 
@@ -17,7 +15,7 @@ const articlesSelector = createSelector(
   (state: RootState) => state.reducerStarter,
   (state: RootState, pageData: [number, number]) => pageData,
   (articles, pageData) => {
-    console.log("сложная обработка", articles);
+    console.log("сложная обработка reselect", articles);
     const [currentPage, perPage] = pageData;
     const articleStart = currentPage * perPage;
     const articleEnd = currentPage * perPage + perPage;
@@ -26,8 +24,9 @@ const articlesSelector = createSelector(
 );
 //===========================================================================
 
-function Main(): JSX.Element {
-  const dispatch = useAppDispatch();
+const Main = React.memo((): JSX.Element => {
+  const history = useHistory();
+  // const dispatch = useAppDispatch();
   const [perPage, setPerPage] = useState(3); //количество статей на странице
   const [currentPage, setCurrentPage] = useState(1); //текущая страница
   const articleCount: number = useAppSelector(
@@ -39,34 +38,8 @@ function Main(): JSX.Element {
 
   const pageCount: number = Math.ceil(articleCount / perPage);
 
-  const add = (currentArticles: PropsArticle[]) => {
-    const newArticle: PropsArticle = {
-      title: "addTitle",
-      text: "addText",
-      date: String(new Date()),
-      author: "addAuthor",
-
-      get id() {
-        return String(Math.floor(Math.random() * 100000));
-      },
-
-      get key() {
-        return this.id + this.author + this.date;
-      },
-    };
-
-    dispatch(addArticle(newArticle));
-  };
-
   return (
     <section className={style.main}>
-      <div>
-        <Button
-          typeButton="secondary"
-          textButton="Add article Modal"
-          onClick={() => (window.location.href = "addArticle")}
-        />
-      </div>
       <div className={style.mainHeader}>
         <p>
           Количество статей на странице:{" "}
@@ -81,13 +54,12 @@ function Main(): JSX.Element {
           Текущая страница;{" "}
           <span className={style.spanCount}>{currentPage + 1}</span>
         </p>
+
         <div>
           <Button
             typeButton="primary"
             textButton="Add article"
-            onClick={() => {
-              add(articles);
-            }}
+            onClick={() => history.push("/addArticle")}
           />
         </div>
       </div>
@@ -123,6 +95,6 @@ function Main(): JSX.Element {
       </div>
     </section>
   );
-}
+});
 
 export default Main;

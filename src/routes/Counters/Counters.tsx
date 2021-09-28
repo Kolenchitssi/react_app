@@ -1,13 +1,13 @@
-import CounterOld from './components/CounterOld';
+import CounterOld from "./components/CounterOld";
 
-import CounterClassic from './components/CounterClassic';
+import CounterClassic from "./components/CounterClassic";
 
-function Counters () :JSX.Element {
+function Counters(): JSX.Element {
   return (
-    <div>
-    <CounterOld />   
-    <CounterClassic/>
-  </div>
+    <div className="inMain">
+      <CounterOld />
+      <CounterClassic />
+    </div>
   );
 }
 

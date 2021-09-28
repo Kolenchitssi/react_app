@@ -4,9 +4,13 @@
   flex-direction: column;
   // justify-content: space-between;
   min-height: 100vh;
-  background-color: lavenderblush;
+  background-color: rgb(240, 251, 255);
 
   ul {
     list-style: none;
   }
+}
+
+.inMain {
+  min-height: 80vh;
 }

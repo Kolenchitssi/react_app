@@ -38,7 +38,7 @@ function CounterClassic(): JSX.Element {
           />
 
           <button
-            className="btn btn-secondary"
+            className="btn btn-success"
             aria-label="Increment value"
             onClick={() => dispatch(addVal(addValue))}
           >
@@ -48,7 +48,7 @@ function CounterClassic(): JSX.Element {
 
         <div>
           <button
-            className="btn btn-secondary"
+            className="btn btn-primary"
             aria-label="Decrement value"
             onClick={() => {
               dispatch(setDecrement(1));
@@ -60,7 +60,7 @@ function CounterClassic(): JSX.Element {
           <span style={{ padding: "5px 10px" }}>{count}</span>
 
           <button
-            className="btn btn-primary"
+            className="btn btn-danger"
             aria-label="Increment value"
             onClick={() => {
               incrementNumber(1);

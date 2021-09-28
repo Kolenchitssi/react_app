@@ -2,11 +2,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  padding: 10px;
+  align-items: stretch;
+  padding: 50px;
   margin: 0 20px;
   border: 1px dotted rgb(4, 5, 83);
   border-radius: 4px;
+  min-height: 80vh;
+  input {
+    margin-left: 16px;
+  }
 }
 
 .errors {
@@ -14,7 +18,7 @@
 }
 
 .textArea {
-  min-width: 80vw;
+  min-width: 100%;
   min-height: 30vh;
   margin: 10px 5px;
   font-size: 16px;
@@ -25,10 +29,11 @@
 input,
 textarea {
   border-radius: 4px;
-  // background-color: lightgray;
+}
 
-  :focus {
-    background-color: lightgreen;
-    color: lime;
-  }
+.formButton {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
 }
