@@ -15,7 +15,7 @@ const articlesSelector = createSelector(
   (state: RootState) => state.reducerStarter,
   (state: RootState, pageData: [number, number]) => pageData,
   (articles, pageData) => {
-    console.log("сложная обработка reselect", articles);
+    // console.log("сложная обработка reselect", articles);
     const [currentPage, perPage] = pageData;
     const articleStart = currentPage * perPage;
     const articleEnd = currentPage * perPage + perPage;

@@ -7,6 +7,7 @@ import {
   NavLink,
 } from "react-router-dom";
 import { MyForm } from "./Main/components/Form/Form";
+import { NewForm } from "./Main/components/Form/newForm";
 
 // import About from '../containers/About/About';
 // import Counters from './Counters/Counters';
@@ -55,23 +56,22 @@ function MyRouter(): JSX.Element {
             <Route exact path="/">
               <Main />
             </Route>
-
             <Route path="/about">
               <About />
             </Route>
-
             <Route path="/counters">
               <Counters />
             </Route>
-
             <Route path="/article/:id">
-              <MyForm typeAction="edit|view" articleId={"id"} />
+              {/* <MyForm typeAction="EDIT" /> */}
+              <NewForm typeAction="EDIT" />
             </Route>
-
             <Route path="/addArticle">
-              <MyForm typeAction="add" />
+              {/* <MyForm typeAction="ADD" /> */}
+              <NewForm typeAction="ADD" />
             </Route>
-
+            //todo сделать отдельно кнопки add для добавления save для
+            редактирования
             <Route>
               <NotFound />
             </Route>

@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 
 import { useAppDispatch } from "../../../../store/hook";
 import { addArticle } from "../../modules/store/action";
@@ -28,26 +28,43 @@ const formValidation = (values: FormType) => {
   };
   const errors: error = {};
   if (!values.title) {
-    errors.title = "Required";
+    errors.title = "Required Title";
+    // values.title = "Required Title";
+  }
+  if (values.title.length > 20) {
+    errors.title = " Length title is no more than 20 characters ";
+    // values.title = "Required Title";
   }
   if (!values.text) {
-    errors.text = "Required";
+    errors.text = "Required text";
+  }
+  if (values.text.length < 5) {
+    errors.text = " Length text is at least 5 characters ";
+    // values.title = "Required Title";
   }
   if (!values.date) {
-    errors.date = "Required";
+    errors.date = "Required date";
   }
+
   if (!values.author) {
-    errors.author = "Required";
+    errors.author = "Required author";
+  }
+  if (values.author.length < 2) {
+    errors.author = " Length name author is at least 2 characters ";
+    // values.title = "Required Title";
   }
   return errors;
 };
 
-type PropsArticleform = {
+type PropsArticleForm = {
   [key: string]: any;
 };
 
-export function MyForm(props: PropsArticleform): JSX.Element {
+export function MyForm(props: PropsArticleForm): JSX.Element {
   const history = useHistory();
+
+  const articleId = useParams();
+  console.log("articleId", articleId);
 
   const goHome = () => {
     history.push("/");
@@ -100,8 +117,8 @@ export function MyForm(props: PropsArticleform): JSX.Element {
         touched, // показывает взаимодействовали ли мы с полем ранее
         handleChange, // вызывается каждый раз когда мы меняем значение
         handleBlur, // вызывается при уходе с поля
-        handleSubmit,
-        handleReset, //вызывается при отправке формы
+        handleSubmit, //вызывается при отправке формы
+        handleReset,
         isSubmitting,
         /* and other goodies */
       }) => (
@@ -145,6 +162,9 @@ export function MyForm(props: PropsArticleform): JSX.Element {
               onBlur={handleBlur}
               value={values.author}
             />
+
+            {/* {errors.author ? <div className="style.errors"> Ошибка</div> : null} */}
+
             <span className={style.errors}>
               {errors.author && touched.author && errors.author}
             </span>

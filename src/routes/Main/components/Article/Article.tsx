@@ -1,6 +1,6 @@
 import styles from "./Article.module.scss";
 import Button from "../../../../components/Button/Button";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { useAppSelector } from "../../../../store/hook";
 
 export type PropsArticle = {
@@ -23,14 +23,18 @@ function Article(props: PropsArticle): JSX.Element {
   const history = useHistory();
   return (
     <article className={styles.article}>
-      <a href={`/article/${props.id}`} className={styles.titleArticle}>
+      <a
+        href={`/article/${props.id}`}
+        className={styles.titleArticle}
+        id={props.id}
+      >
         <h4>{props.title}</h4>
       </a>
       <div className={styles.articleText}>
         <textarea
           className={styles.textArea}
           name={props.title}
-          id={props.id}
+          // id={props.id}
           defaultValue={props.text}
           readOnly
         ></textarea>
