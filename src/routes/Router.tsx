@@ -70,8 +70,6 @@ function MyRouter(): JSX.Element {
               {/* <MyForm typeAction="ADD" /> */}
               <NewForm typeAction="ADD" />
             </Route>
-            //todo сделать отдельно кнопки add для добавления save для
-            редактирования
             <Route>
               <NotFound />
             </Route>

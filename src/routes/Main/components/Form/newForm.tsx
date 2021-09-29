@@ -10,7 +10,6 @@ import { PropsArticle } from "../Article/Article";
 import style from "./Form.module.scss";
 
 type FormType = {
-  // [key: string]: any;
   title: string;
   text: string;
   date: string;
@@ -20,7 +19,7 @@ type FormType = {
 };
 
 type PropsArticleForm = {
-  [key: string]: any;
+  [key: string]: string;
 };
 
 const validationSchema = Yup.object({
@@ -43,7 +42,6 @@ export function NewForm({ typeAction }: PropsArticleForm): JSX.Element {
     history.push("/");
   };
 
-  // { articleObj }: PropsArticleForm
   type TypeArticleId = {
     id: string;
   };
@@ -55,8 +53,6 @@ export function NewForm({ typeAction }: PropsArticleForm): JSX.Element {
   const indexArticleOfArray = allArticle.findIndex(
     (item) => item.id === resultId
   );
-
-  // console.log("new", allArticle[indexArticleOfArray]);
 
   let initialValues = {
     title: "",
@@ -94,6 +90,10 @@ export function NewForm({ typeAction }: PropsArticleForm): JSX.Element {
     addNewArticle(values);
     setSubmitting(false);
     goHome();
+  };
+
+  const saveArticle = (indexArticleOfArray: any, values: any) => {
+    console.log(indexArticleOfArray, values);
   };
 
   const dispatch = useAppDispatch();
@@ -155,20 +155,34 @@ export function NewForm({ typeAction }: PropsArticleForm): JSX.Element {
           <p>
             <label htmlFor={style.date}> date : </label>
             <Field type="date" name="date" id={style.date} />
-            <span>
+            <span className={style.errors}>
               <ErrorMessage name="date" />
             </span>
           </p>
 
           <div className={style.formButton}>
-            <button
-              type="submit"
-              className="btn btn-success"
-              disabled={isSubmitting} /*кнопка недоступна когда идет отправка*/
-            >
-              Save/Add
-            </button>
-
+            {typeAction === "ADD" ? (
+              <button
+                type="submit"
+                className="btn btn-success"
+                disabled={
+                  isSubmitting
+                } /*кнопка недоступна когда идет отправка*/
+              >
+                Add
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="btn btn-success"
+                onClick={(values) => saveArticle(indexArticleOfArray, values)}
+                disabled={
+                  isSubmitting
+                } /*кнопка недоступна когда идет отправка*/
+              >
+                Save=func сделать
+              </button>
+            )}
             <button
               type="button"
               className="btn btn-danger"
