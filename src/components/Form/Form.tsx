@@ -1,9 +1,9 @@
 import { Formik } from "formik";
 import { useHistory, useParams } from "react-router";
 
-import { useAppDispatch } from "../../../../store/hook";
-import { addArticle } from "../../modules/store/action";
-import { PropsArticle } from "../Article/Article";
+import { useAppDispatch } from "../../store/hook";
+import { addArticle } from "../../routes/Main/modules/store/action";
+import { PropsArticle } from "../../routes/Main/components/Article/Article";
 import style from "./Form.module.scss";
 
 type FormType = {

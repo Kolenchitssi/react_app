@@ -1,25 +1,15 @@
-//todo сделать отдельно кнопки add для добавления save для редактирования и функция save должна сохранять в том же месте массива изменненный Article
-
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useHistory, useParams } from "react-router";
 
-import { useAppDispatch, useAppSelector } from "../../../../store/hook";
-import { addArticle } from "../../modules/store/action";
-import { PropsArticle } from "../Article/Article";
+import { FormType } from "../../store/models";
 import style from "./Form.module.scss";
 
-type FormType = {
-  title: string;
-  text: string;
-  date: string;
-  author: string;
-  id: string;
-  key: string;
-};
-
 type PropsArticleForm = {
-  [key: string]: string;
+  // [key: string]: any;
+  actionSubmit: (value: FormType) => void;
+  actionCancel: () => void;
+  typeAction: "ADD" | "EDIT";
+  initialVal: FormType;
 };
 
 const validationSchema = Yup.object({
@@ -35,77 +25,35 @@ const validationSchema = Yup.object({
     .min(2, "Length name author is at least 2 characters "),
 });
 
-export function NewForm({ typeAction }: PropsArticleForm): JSX.Element {
-  const history = useHistory();
+export function NewForm({
+  typeAction,
+  actionSubmit,
+  actionCancel,
+  initialVal,
+}: PropsArticleForm): JSX.Element {
+  // const history = useHistory();
+  // const goHome = () => {
+  //   history.push("/");
+  // };
 
-  const goHome = () => {
-    history.push("/");
-  };
+  const goHome = actionCancel;
 
-  type TypeArticleId = {
-    id: string;
-  };
+  // type TypeArticleId = {
+  //   id: string;
+  // };
 
-  const articleId: TypeArticleId = useParams();
-  const resultId = articleId.id;
-  const allArticle = useAppSelector((state) => state.reducerStarter);
-
-  const indexArticleOfArray = allArticle.findIndex(
-    (item) => item.id === resultId
-  );
-
-  let initialValues = {
-    title: "",
-    text: "",
-    date: "",
-    author: "",
-    id: "",
-    key: "",
-  };
-
-  switch (typeAction) {
-    case "ADD":
-      console.log("ADD");
-      break;
-
-    case "EDIT":
-      initialValues = allArticle[indexArticleOfArray];
-      break;
-
-    default:
-      break;
-  }
-
-  //function submit
   const submit = (
     values: FormType,
     { setSubmitting }: { setSubmitting: (isSubmiting: boolean) => void }
   ) => {
-    // setTimeout(() => {
-    //   alert(JSON.stringify(values));
-    //   setSubmitting(false);
-    // }, 400);
-    values.id = String(Math.floor(Math.random() * 100000)) + values.author;
-    values.key = values.id + values.author + values.date;
-    addNewArticle(values);
+    actionSubmit(values);
     setSubmitting(false);
     goHome();
   };
 
-  const saveArticle = (indexArticleOfArray: any, values: any) => {
-    console.log(indexArticleOfArray, values);
-  };
-
-  const dispatch = useAppDispatch();
-  const addNewArticle = (currentArticles: PropsArticle) => {
-    dispatch(addArticle(currentArticles));
-  };
-
-  //======================================
-
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={initialVal}
       validationSchema={validationSchema}
       onSubmit={submit}
     >
@@ -133,13 +81,14 @@ export function NewForm({ typeAction }: PropsArticleForm): JSX.Element {
               id={style.textArea}
               placeholder="Add your text"
             />
-            <p className={style.errors}>
+            <span className={style.errors}>
               <ErrorMessage name="text" />
-            </p>
+            </span>
           </p>
 
           <p>
             <label htmlFor={style.author}> author : </label>
+
             <Field
               type="author"
               name="author"
@@ -175,12 +124,11 @@ export function NewForm({ typeAction }: PropsArticleForm): JSX.Element {
               <button
                 type="submit"
                 className="btn btn-success"
-                onClick={(values) => saveArticle(indexArticleOfArray, values)}
                 disabled={
                   isSubmitting
                 } /*кнопка недоступна когда идет отправка*/
               >
-                Save=func сделать
+                Save
               </button>
             )}
             <button

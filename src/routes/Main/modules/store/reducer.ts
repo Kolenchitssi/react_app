@@ -1,3 +1,4 @@
+import { useAppSelector } from "../../../../store/hook";
 import { BaseAction, ReducerType } from "../../../../store/models";
 import { createReducer } from "../../../../store/utils";
 import { PropsArticle } from "../../components/Article/Article";
@@ -10,14 +11,25 @@ const defaultState: StateLocal = articlesList;
 
 const listReducer: ReducerType<StateLocal> = {
   [ADD_ARTICLE]: (
-    state = defaultState,
+    state: StateLocal,
     action: BaseAction<PropsArticle>
   ): StateLocal => {
-    const newArticle: PropsArticle[] = state.concat(action.payload);
-    return newArticle;
+    return state.concat(action.payload);
   },
-  [REMOVE_ARTICLE]: (state = defaultState) => ({ ...state /*TODO*/ }),
-  [EDIT_ARTICLE]: (state = defaultState) => ({ ...state /*TODO*/ }),
+
+  [REMOVE_ARTICLE]: (state) => ({ ...state /*TODO*/ }),
+
+  [EDIT_ARTICLE]: (
+    state: StateLocal,
+    action: BaseAction<PropsArticle>
+  ): StateLocal => {
+    return state.map((item) => {
+      if (item.id === action.payload.id) return action.payload;
+      else return item;
+    });
+
+    // console.log(allArticles, "весь список", "заменяем на ", action.payload);
+  },
 };
 
 export const reducerStarter = createReducer<StateLocal>(

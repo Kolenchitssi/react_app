@@ -4,10 +4,10 @@
   justify-content: center;
   align-items: stretch;
   padding: 50px;
-  margin: 0 20px;
-  border: 1px dotted rgb(4, 5, 83);
+  margin: 15px 20px;
+  border: 1px solid rgb(4, 5, 83);
   border-radius: 4px;
-  min-height: 80vh;
+  min-height: 72vh;
   input {
     margin-left: 16px;
   }
@@ -24,7 +24,7 @@
   margin: 10px 5px;
   font-size: 16px;
   resize: none;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(250, 251, 255);
 }
 
 input,

@@ -1,13 +1,14 @@
 import { lazy, Suspense } from "react";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
   NavLink,
+  Route,
+  Switch,
 } from "react-router-dom";
-import { MyForm } from "./Main/components/Form/Form";
-import { NewForm } from "./Main/components/Form/newForm";
+
+import { AddArticle } from "./Main/components/AddArticle/AddArticle";
+import { EditArticle } from "./Main/components/EditArticle/EditArticle";
+import { ViewArticle } from "./Main/components/ViewArticle/ViewArticle";
 
 // import About from '../containers/About/About';
 // import Counters from './Counters/Counters';
@@ -45,9 +46,6 @@ function MyRouter(): JSX.Element {
                 Counters
               </NavLink>
             </li>
-            {/* <li>
-              <Link to="/addArticle">addArticle</Link>
-            </li> */}
           </ul>
         </nav>
 
@@ -62,13 +60,14 @@ function MyRouter(): JSX.Element {
             <Route path="/counters">
               <Counters />
             </Route>
-            <Route path="/article/:id">
-              {/* <MyForm typeAction="EDIT" /> */}
-              <NewForm typeAction="EDIT" />
+            <Route path="/article/:id/view">
+              <ViewArticle />
             </Route>
-            <Route path="/addArticle">
-              {/* <MyForm typeAction="ADD" /> */}
-              <NewForm typeAction="ADD" />
+            <Route path="/article/:id/edit">
+              <EditArticle />
+            </Route>
+            <Route path="/article/add">
+              <AddArticle />
             </Route>
             <Route>
               <NotFound />

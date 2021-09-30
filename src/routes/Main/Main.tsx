@@ -59,7 +59,7 @@ const Main = React.memo((): JSX.Element => {
           <Button
             typeButton="primary"
             textButton="Add article"
-            onClick={() => history.push("/addArticle")}
+            onClick={() => history.push("/article/add")}
           />
         </div>
       </div>
