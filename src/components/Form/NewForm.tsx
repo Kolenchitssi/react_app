@@ -31,16 +31,7 @@ export function NewForm({
   actionCancel,
   initialVal,
 }: PropsArticleForm): JSX.Element {
-  // const history = useHistory();
-  // const goHome = () => {
-  //   history.push("/");
-  // };
-
   const goHome = actionCancel;
-
-  // type TypeArticleId = {
-  //   id: string;
-  // };
 
   const submit = (
     values: FormType,
