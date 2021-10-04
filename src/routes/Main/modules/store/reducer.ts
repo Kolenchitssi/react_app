@@ -1,18 +1,18 @@
 import { useAppSelector } from "../../../../store/hook";
-import { BaseAction, ReducerType } from "../../../../store/models";
+import { BaseAction, FormType, ReducerType } from "../../../../store/models";
 import { createReducer } from "../../../../store/utils";
-import { PropsArticle } from "../../components/Article/Article";
+
 import { articlesList } from "../../components/Article/articlesList";
 import { ADD_ARTICLE, EDIT_ARTICLE, REMOVE_ARTICLE } from "./action";
 
-type StateLocal = PropsArticle[];
+type StateLocal = FormType[];
 
 const defaultState: StateLocal = articlesList;
 
 const listReducer: ReducerType<StateLocal> = {
   [ADD_ARTICLE]: (
     state: StateLocal,
-    action: BaseAction<PropsArticle>
+    action: BaseAction<FormType>
   ): StateLocal => {
     return state.concat(action.payload);
   },
@@ -21,7 +21,7 @@ const listReducer: ReducerType<StateLocal> = {
 
   [EDIT_ARTICLE]: (
     state: StateLocal,
-    action: BaseAction<PropsArticle>
+    action: BaseAction<FormType>
   ): StateLocal => {
     return state.map((item) => {
       if (item.id === action.payload.id) return action.payload;

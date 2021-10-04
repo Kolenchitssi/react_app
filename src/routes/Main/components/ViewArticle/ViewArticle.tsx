@@ -31,7 +31,7 @@ export function ViewArticle(): JSX.Element {
       <div>
         {" "}
         <p>Author: {article?.author}</p>
-        <p>Date:{article?.date}</p>
+        <p>Date:{String(article?.date)}</p>
       </div>
 
       <div className={style.buttonWrapper}>

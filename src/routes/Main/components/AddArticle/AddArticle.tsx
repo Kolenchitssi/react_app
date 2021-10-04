@@ -2,13 +2,13 @@ import { useHistory } from "react-router";
 import { useAppDispatch } from "../../../../store/hook";
 import { FormType } from "../../../../store/models";
 import { addArticle } from "../../modules/store/action";
-import { PropsArticle } from "../Article/Article";
+// import { PropsArticle } from "../Article/Article";
 import { NewForm } from "../../../../components/Form/NewForm";
 
 const initialValue = {
   title: "",
   text: "",
-  date: "",
+  date: new Date(),
   author: "",
   id: "",
   key: "",
@@ -17,7 +17,7 @@ const initialValue = {
 export const AddArticle = () => {
   const dispatch = useAppDispatch();
 
-  const addNewArticle = (currentArticles: PropsArticle) => {
+  const addNewArticle = (currentArticles: FormType) => {
     dispatch(addArticle(currentArticles));
   };
 
@@ -26,7 +26,7 @@ export const AddArticle = () => {
     // { setSubmitting }: { setSubmitting: (isSubmiting: boolean) => void }
   ) => {
     values.id = String(Math.floor(Math.random() * 100000)) + values.author;
-    values.key = values.id + values.author + values.date;
+    values.key = values.id;
 
     addNewArticle(values);
     // setSubmitting(false);

@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { FormType } from "../../store/models";
 import style from "./Form.module.scss";
 
+import { DateForm } from "../DateForm/DateForm";
+
 type PropsArticleForm = {
   // [key: string]: any;
   actionSubmit: (value: FormType) => void;
@@ -50,7 +52,7 @@ export function NewForm({
     >
       {({ handleReset, isSubmitting }) => (
         <Form className={style.form}>
-          <p>
+          <div>
             <label htmlFor={style.title}> title : </label>
             <Field
               type="title"
@@ -62,8 +64,8 @@ export function NewForm({
             <span className={style.errors}>
               <ErrorMessage name="title" />
             </span>
-          </p>
-          <p>
+          </div>
+          <div>
             <label htmlFor={style.textArea}> text : </label>
             <Field
               as="textarea"
@@ -75,9 +77,9 @@ export function NewForm({
             <span className={style.errors}>
               <ErrorMessage name="text" />
             </span>
-          </p>
+          </div>
 
-          <p>
+          <div>
             <label htmlFor={style.author}> author : </label>
 
             <Field
@@ -90,15 +92,23 @@ export function NewForm({
             <span className={style.errors}>
               <ErrorMessage name="author" component="span" />
             </span>
-          </p>
+          </div>
 
-          <p>
+          {/* <p>
             <label htmlFor={style.date}> date : </label>
             <Field type="date" name="date" id={style.date} />
             <span className={style.errors}>
               <ErrorMessage name="date" />
             </span>
-          </p>
+          </p> */}
+
+          <div>
+            <label htmlFor={style.date}> date : </label>
+            <DateForm name="date" id={style.date} />
+            <span className={style.errors}>
+              <ErrorMessage name="date" />
+            </span>
+          </div>
 
           <div className={style.formButton}>
             {typeAction === "ADD" ? (

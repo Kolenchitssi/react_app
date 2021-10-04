@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { NewForm } from "../../../../components/Form/NewForm";
-import { AppDispatch, FormType, RootState } from "../../../../store/models";
+import { FormType, RootState } from "../../../../store/models";
 import { editArticle } from "../../modules/store/action";
 
 type ownProps = {

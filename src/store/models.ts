@@ -18,7 +18,7 @@ export type AppDispatch = typeof store.dispatch;
 export type FormType = {
   title: string;
   text: string;
-  date: string;
+  date: Date;
   author: string;
   id: string;
   key: string;

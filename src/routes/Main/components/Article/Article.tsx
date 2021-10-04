@@ -2,18 +2,19 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 import Button from "../../../../components/Button/Button";
+import { FormType } from "../../../../store/models";
 import styles from "./Article.module.scss";
 
-export type PropsArticle = {
-  id: string;
-  key: string;
-  title: string;
-  text: string;
-  date: string;
-  author: string;
-};
+// export type PropsArticle = {
+//   id: string;
+//   key: string;
+//   title: string;
+//   text: string;
+//   date: Date;
+//   author: string;
+// };
 
-function Article(props: PropsArticle): JSX.Element {
+function Article(props: FormType): JSX.Element {
   //button Delete забрать список всех статей и по id  найти и удалить из массива
 
   const deleteArticle = (e: any) => {
@@ -30,7 +31,6 @@ function Article(props: PropsArticle): JSX.Element {
         <textarea
           className={styles.textArea}
           name={props.title}
-          // id={props.id}
           defaultValue={props.text}
           readOnly
         ></textarea>
@@ -50,7 +50,7 @@ function Article(props: PropsArticle): JSX.Element {
         />
       </div>
       <div className={styles.author}>
-        <p>{props.date}</p>
+        <p>{String(props.date)}</p>
         <p>
           {"\u00A0"} | {"\u00A0"}
         </p>

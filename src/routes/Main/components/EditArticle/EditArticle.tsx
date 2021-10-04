@@ -2,7 +2,6 @@ import { useHistory, useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../../../store/hook";
 import { FormType } from "../../../../store/models";
 import { editArticle } from "../../modules/store/action";
-import { PropsArticle } from "../Article/Article";
 import { ConnectedNewForm } from "./ConnectedNewForm";
 
 export const EditArticle = () => {
@@ -10,7 +9,7 @@ export const EditArticle = () => {
   const articleId: { id: string } = useParams();
   const resultId = articleId.id;
 
-  const saveExistArticle = (currentArticles: PropsArticle) => {
+  const saveExistArticle = (currentArticles: FormType) => {
     dispatch(editArticle(currentArticles));
   };
 
