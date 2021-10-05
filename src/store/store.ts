@@ -3,6 +3,13 @@ import { counterClassicReducerObj } from "../routes/Counters/store/reducer";
 
 import { reducerStarter } from "../routes/Main/modules/store/reducer";
 
+// create Saga============================================
+import createSagaMiddleware from "redux-saga";
+import { rootSaga } from "./sagas";
+
+const sagaMiddleware = createSagaMiddleware();
+//=========================================================
+
 let composeEnhancers = compose;
 
 if (process.env.NODE_ENV === "development") {
@@ -20,5 +27,8 @@ const rootReducer = combineReducers({
 
 export const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware())
+  composeEnhancers(applyMiddleware(sagaMiddleware)) //Saga
 );
+
+//======запуск Saga========
+sagaMiddleware.run(rootSaga);
