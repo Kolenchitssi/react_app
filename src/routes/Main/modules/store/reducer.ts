@@ -3,11 +3,28 @@ import { BaseAction, FormType, ReducerType } from "../../../../store/models";
 import { createReducer } from "../../../../store/utils";
 
 import { articlesList } from "../../components/Article/articlesList";
-import { ADD_ARTICLE, EDIT_ARTICLE, REMOVE_ARTICLE } from "./action";
+import {
+  ADD_ARTICLE,
+  EDIT_ARTICLE,
+  GET_ARTICLE,
+  REMOVE_ARTICLE,
+  SET_ARTICLE_TO_STATE,
+} from "./action";
 
 type StateLocal = FormType[];
 
-const defaultState: StateLocal = articlesList;
+const initialState = [
+  {
+    id: "",
+    key: "",
+    title: "",
+    text: "",
+    date: new Date(),
+    author: "",
+  },
+];
+
+const defaultState: StateLocal = initialState; // getLocalStorage();
 
 const listReducer: ReducerType<StateLocal> = {
   [ADD_ARTICLE]: (
@@ -17,7 +34,30 @@ const listReducer: ReducerType<StateLocal> = {
     return state.concat(action.payload);
   },
 
-  [REMOVE_ARTICLE]: (state) => ({ ...state /*TODO*/ }),
+  // [GET_ARTICLE]: (
+  //   state: StateLocal,
+  //   action: BaseAction<FormType[]>
+  // ): StateLocal => {
+  //   console.log(action.payload);
+  //   return state;
+  // },
+
+  [SET_ARTICLE_TO_STATE]: (
+    state: StateLocal,
+    action: BaseAction<FormType[]>
+  ): StateLocal => {
+    console.log(action.payload);
+    return action.payload;
+  },
+
+  [REMOVE_ARTICLE]: (
+    state: StateLocal,
+    action: BaseAction<string>
+  ): StateLocal => {
+    return state.filter((item) => {
+      return item.id !== action.payload;
+    });
+  },
 
   [EDIT_ARTICLE]: (
     state: StateLocal,

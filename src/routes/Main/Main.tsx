@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { createSelector } from "reselect";
 
 import Button from "../../components/Button/Button";
-import { useAppSelector } from "../../store/hook";
+import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { RootState } from "../../store/models";
 import Article from "./components/Article/Article";
 import SelectApp from "./components/SelectApp/SelectApp";
 import style from "./Main.module.scss";
+import { getArticle, GET_ARTICLE } from "./modules/store/action";
 
 // ======================= create reselect===================================================
 
@@ -22,21 +23,29 @@ const articlesSelector = createSelector(
     return articles.slice(articleStart, articleEnd);
   }
 );
-//===========================================================================
+// end create reselect===========================================================================
 
 const Main = React.memo((): JSX.Element => {
   const history = useHistory();
-  // const dispatch = useAppDispatch();
+
   const [perPage, setPerPage] = useState(3); //количество статей на странице
   const [currentPage, setCurrentPage] = useState(1); //текущая страница
   const articleCount: number = useAppSelector(
     (state) => state.reducerStarter
   ).length;
+
   const articles = useAppSelector((state) =>
     articlesSelector(state, [currentPage, perPage])
   );
 
   const pageCount: number = Math.ceil(articleCount / perPage);
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    console.log("use effect start");
+    // console.log(getArticle(GET_ARTICLE));
+    dispatch(getArticle());
+  }, []);
 
   return (
     <section className={style.main}>

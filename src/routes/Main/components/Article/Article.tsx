@@ -2,7 +2,9 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 import Button from "../../../../components/Button/Button";
+import { useAppDispatch } from "../../../../store/hook";
 import { FormType } from "../../../../store/models";
+import { removeArticle } from "../../modules/store/action";
 import styles from "./Article.module.scss";
 
 // export type PropsArticle = {
@@ -17,11 +19,12 @@ import styles from "./Article.module.scss";
 function Article(props: FormType): JSX.Element {
   //button Delete забрать список всех статей и по id  найти и удалить из массива
 
-  const deleteArticle = (e: any) => {
-    console.log(e);
-  };
+  // const deleteArticle = (e: any) => {
+  //   console.log(e);
+  // };
 
   const history = useHistory();
+  const dispatch = useAppDispatch();
   return (
     <article className={styles.article}>
       <Link to={`/article/${props.id}/view`} className="nav-link">
@@ -45,7 +48,9 @@ function Article(props: FormType): JSX.Element {
           typeButton="danger"
           textButton="Delete"
           onClick={() => {
-            deleteArticle(props.id);
+            // console.log(props.id);
+
+            dispatch(removeArticle(props.id));
           }}
         />
       </div>

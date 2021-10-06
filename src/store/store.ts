@@ -2,6 +2,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { counterClassicReducerObj } from "../routes/Counters/store/reducer";
 
 import { reducerStarter } from "../routes/Main/modules/store/reducer";
+import { starWarReducer } from "../routes//StarWars/store/reducer";
 
 // create Saga============================================
 import createSagaMiddleware from "redux-saga";
@@ -23,6 +24,7 @@ if (process.env.NODE_ENV === "development") {
 const rootReducer = combineReducers({
   counterClassicReducerObj,
   reducerStarter,
+  starWarReducer,
 });
 
 export const store = createStore(
