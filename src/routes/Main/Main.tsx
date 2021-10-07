@@ -43,7 +43,6 @@ const Main = React.memo((): JSX.Element => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     console.log("use effect start");
-    // console.log(getArticle(GET_ARTICLE));
     dispatch(getArticle());
   }, []);
 

@@ -42,11 +42,12 @@ const listReducer: ReducerType<StateLocal> = {
   //   return state;
   // },
 
+  //записывает в стэйт  список артиклей  считаных из LocalStorage
   [SET_ARTICLE_TO_STATE]: (
     state: StateLocal,
     action: BaseAction<FormType[]>
   ): StateLocal => {
-    console.log(action.payload);
+    // console.log(action.payload);
     return action.payload;
   },
 

@@ -35,45 +35,50 @@ import {
 } from "../routes/Main/modules/store/action";
 import { articlesList } from "../routes/Main/components/Article/articlesList";
 import { ActionType } from "@redux-saga/types";
-import { workerRemoveArticles } from "../routes/Main/modules/sagas/removeArticle";
+import {
+  watchClickRemoveSaga,
+  workerRemoveArticles,
+} from "../routes/Main/modules/sagas/removeArticleFromLocalStorage";
+import { watchClickAddSaga } from "../routes/Main/modules/sagas/addArticleToLocalStorage";
+import { watchGetArticles } from "../routes/Main/modules/sagas/getArticleFromLocalStorage";
+import { watchClickEditSaga } from "../routes/Main/modules/sagas/EditArticleInLocalStorage";
 
-const refreshLocalStorage = (store: RootState) =>
-  localStorage.setItem("articles", JSON.stringify(store.reducerStarter));
+// const refreshLocalStorage = (store: RootState) =>
+//   localStorage.setItem("articles", JSON.stringify(store.reducerStarter));
 
-const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+// const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 //worker saga которая будет запускатся в зависимости от какого-то экшена
 //выполняет бизнес логику(запрос/таймаут/запись в кэш и т.д.)
 
-export function* workerSaga(action: BaseAction<FormType>) {
-  yield delay(500);
-  const store: RootState = yield select((store) => store);
-  console.log(store);
-  yield console.log("saga отработала по экшену: ADD_ARTICLE or EDIT REMOVE");
-  // yield delay(500);
-  // yield put({ type: "ADD_VAL", payload: 100 });
-  // yield console.log("увеличился счетчик");
-  yield delay(1000);
-  yield refreshLocalStorage(store);
-  yield console.log("обновился LocalStorage", "add :", action.payload);
-}
+// export function* workerSaga(action: BaseAction<FormType>) {
+//   yield delay(500);
+//   const store: RootState = yield select((store) => store);
+//   console.log(store);
+//   yield console.log("saga отработала по экшену: ADD_ARTICLE or EDIT REMOVE");
+// yield delay(500);
+// yield put({ type: "ADD_VAL", payload: 100 });
+// yield console.log("увеличился счетчик");
+//   yield delay(1000);
+//   yield refreshLocalStorage(store);
+//   yield console.log("обновился LocalStorage", "add :", action.payload);
+// }
 
-const getLocalStorage = () => {
-  if (!localStorage.length && !localStorage.getItem("articles")) {
-    localStorage.setItem("articles", JSON.stringify(articlesList));
-  }
-  const localStorageList = localStorage.getItem("articles") || "";
-  return JSON.parse(localStorageList);
-};
+// const getLocalStorage = () => {
+//   if (!localStorage.length && !localStorage.getItem("articles")) {
+//     localStorage.setItem("articles", JSON.stringify(articlesList));
+//   }
+//   const localStorageList = localStorage.getItem("articles") || "";
+//   return JSON.parse(localStorageList);
+// };
 
 //получение списка артиклей из localstorage
-export function* workerGetArticles() {
-  yield delay(2000);
-  const newStore: FormType[] = getLocalStorage();
-  // console.log("workerGetArticles - newStore", newStore);
+// export function* workerGetArticles() {
+//   yield delay(2000);
+//   const newStore: FormType[] = getLocalStorage();
 
-  yield put({ type: SET_ARTICLE_TO_STATE, payload: newStore });
-}
+//   yield put({ type: SET_ARTICLE_TO_STATE, payload: newStore });
+// }
 
 //Удаление  артикля из localstorage
 // export function* workerRemoveArticles() {
@@ -88,25 +93,13 @@ export function* workerGetArticles() {
 //saga watcher  следят за dispatch'ем action  в приложении и когда происходит
 //какойто экшен они выполняют какое-то действие запускают worker
 
-export function* watchClickEditSaga() {
-  yield takeEvery(EDIT_ARTICLE, workerSaga);
-}
+// export function* watchClickEditSaga() {
+//   yield takeEvery(EDIT_ARTICLE, workerSaga);
+// }
 
-export function* watchClickAddSaga() {
-  const action: BaseAction<FormType> = yield takeEvery(ADD_ARTICLE, workerSaga);
-}
-
-export function* watchClickRemoveSaga() {
-  const action: BaseAction<string> = yield takeEvery(
-    REMOVE_ARTICLE_LOCALSTORAGE,
-    workerRemoveArticles
-  );
-  put(removeArticle("id"));
-}
-
-export function* watchGetArticles() {
-  yield takeEvery(GET_ARTICLE, workerGetArticles);
-}
+// export function* watchClickAddSaga() {
+//   const action: BaseAction<FormType> = yield takeEvery(ADD_ARTICLE, workerSaga);
+// }
 
 //cоздает самый верхний процесс запускает watcher-ы
 
@@ -114,13 +107,9 @@ export function* rootSaga() {
   // yield watchClickSaga();
   // yield fork(watchClickSaga); //неблокируемый запуск но задача привязывается к родителю
   // yield spawn(watchClickEditSaga); //создает паралельную задачу в корне саги, сам процесс не привязывается к родителю
+  yield fork(watchGetArticles);
   yield fork(watchClickEditSaga);
   yield fork(watchClickAddSaga);
   yield fork(watchClickRemoveSaga);
-  yield fork(watchGetArticles);
-
-  // yield watchClickEditSaga();
-  // yield watchClickAddSaga();
-  // yield watchClickRemoveSaga();
-  // yield watchGetArticles();
+  
 }

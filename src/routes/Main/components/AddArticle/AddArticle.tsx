@@ -1,7 +1,7 @@
 import { useHistory } from "react-router";
 import { useAppDispatch } from "../../../../store/hook";
 import { FormType } from "../../../../store/models";
-import { addArticle } from "../../modules/store/action";
+import { addArticleToLocalStorage } from "../../modules/store/action";
 // import { PropsArticle } from "../Article/Article";
 import { NewForm } from "../../../../components/Form/NewForm";
 
@@ -18,7 +18,7 @@ export const AddArticle = () => {
   const dispatch = useAppDispatch();
 
   const addNewArticle = (currentArticles: FormType) => {
-    dispatch(addArticle(currentArticles));
+    dispatch(addArticleToLocalStorage(currentArticles));
   };
 
   const submitAdd = (

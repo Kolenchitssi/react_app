@@ -94,13 +94,13 @@ export function NewForm({
             </span>
           </div>
 
-          {/* <p>
+          {/* <div>
             <label htmlFor={style.date}> date : </label>
             <Field type="date" name="date" id={style.date} />
             <span className={style.errors}>
               <ErrorMessage name="date" />
             </span>
-          </p> */}
+          </div> */}
 
           <div>
             <label htmlFor={style.date}> date : </label>

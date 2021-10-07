@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-export const DateForm = ({ name = "date", id = "" }) => {
+export const DateForm = ({ name = "date", id = "dDataForm" }) => {
   const [startDate, setStartDate] = useState(new Date());
   return (
     <DatePicker

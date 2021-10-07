@@ -7,7 +7,7 @@ import refreshLocalStorage from "../asistansFunction/refreshLocalStorage1";
 
 //Удаление  артикля из localstorage
 export function* workerRemoveArticles(action: BaseAction<string>) {
-  yield delay(1000);
+  yield delay(500);
   let success = false;
   const currentLocalStorage: FormType[] = yield getLocalStorage();
   //ошибка для удаления артикля с индексом 1
@@ -18,7 +18,7 @@ export function* workerRemoveArticles(action: BaseAction<string>) {
     success = true;
     if (success) {
       yield call(refreshLocalStorage, newLocalStorage);
-      yield delay(1000);
+      yield delay(500);
       yield put(removeArticle(action.payload));
       yield alert("Article delete succes");
     }

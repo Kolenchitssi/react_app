@@ -6,7 +6,7 @@ import { starWarReducer } from "../routes//StarWars/store/reducer";
 
 // create Saga============================================
 import createSagaMiddleware from "redux-saga";
-import { rootSaga } from "./sagas";
+import { rootSaga } from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 //=========================================================

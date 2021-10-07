@@ -34,12 +34,7 @@ function Article(props: FormType): JSX.Element {
         <h4>{props.title}</h4>
       </Link>
       <div className={styles.articleText}>
-        <textarea
-          className={styles.textArea}
-          name={props.title}
-          defaultValue={props.text}
-          readOnly
-        ></textarea>
+        <p className={styles.textArea}>{props.text}</p>
         <Button
           typeButton="secondary"
           textButton="Edit"

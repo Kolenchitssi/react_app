@@ -1,7 +1,7 @@
 import { useHistory, useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../../../store/hook";
 import { FormType } from "../../../../store/models";
-import { editArticle } from "../../modules/store/action";
+import { editArticleToLocalStorage } from "../../modules/store/action";
 import { ConnectedNewForm } from "./ConnectedNewForm";
 
 export const EditArticle = () => {
@@ -10,7 +10,7 @@ export const EditArticle = () => {
   const resultId = articleId.id;
 
   const saveExistArticle = (currentArticles: FormType) => {
-    dispatch(editArticle(currentArticles));
+    dispatch(editArticleToLocalStorage(currentArticles));
   };
 
   const submitEdit = (values: FormType) => {
