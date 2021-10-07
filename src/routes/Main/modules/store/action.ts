@@ -7,9 +7,15 @@ export const REMOVE_ARTICLE = "REMOVE_ARTICLE";
 export const EDIT_ARTICLE = "EDIT_ARTICLE";
 export const GET_ARTICLE = "GET_ARTICLE";
 export const SET_ARTICLE_TO_STATE = "SET_ARTICLE_TO_STATE";
+export const REMOVE_ARTICLE_LOCALSTORAGE = "REMOVE_ARTICLE_LOCALSTORAGE";
+export const SET_STATE_PROCESS = "SET_STATE_PROCESS";
 
 export const addArticle = createAction<FormType>(ADD_ARTICLE);
 export const removeArticle = createAction<string>(REMOVE_ARTICLE);
 export const editArticle = createAction<FormType>(EDIT_ARTICLE);
 export const getArticle = createAction<void>(GET_ARTICLE);
+export const removeArticleLocalStorage = createAction<string>(
+  REMOVE_ARTICLE_LOCALSTORAGE
+);
 export const setArticleToState = createAction<FormType[]>(SET_ARTICLE_TO_STATE);
+export const setStateProcess = createAction<string>(SET_STATE_PROCESS);

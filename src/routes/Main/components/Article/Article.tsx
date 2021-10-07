@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import Button from "../../../../components/Button/Button";
 import { useAppDispatch } from "../../../../store/hook";
 import { FormType } from "../../../../store/models";
-import { removeArticle } from "../../modules/store/action";
+import {
+  removeArticle,
+  removeArticleLocalStorage,
+} from "../../modules/store/action";
 import styles from "./Article.module.scss";
 
 // export type PropsArticle = {
@@ -50,7 +53,7 @@ function Article(props: FormType): JSX.Element {
           onClick={() => {
             // console.log(props.id);
 
-            dispatch(removeArticle(props.id));
+            dispatch(removeArticleLocalStorage(props.id));
           }}
         />
       </div>

@@ -1,4 +1,4 @@
-import type { RootState, AppDispatch, FormType } from "./models";
+import type { RootState, AppDispatch, FormType, BaseAction } from "./models";
 //эффекты -вспомогательные функции которые создают простые объекты котрые содержат инструкции
 //эти инструкции выполняются самой reduxSagaMiddleware
 
@@ -28,10 +28,14 @@ import {
   ADD_ARTICLE,
   EDIT_ARTICLE,
   GET_ARTICLE,
+  removeArticle,
   REMOVE_ARTICLE,
+  REMOVE_ARTICLE_LOCALSTORAGE,
   SET_ARTICLE_TO_STATE,
 } from "../routes/Main/modules/store/action";
 import { articlesList } from "../routes/Main/components/Article/articlesList";
+import { ActionType } from "@redux-saga/types";
+import { workerRemoveArticles } from "../routes/Main/modules/sagas/removeArticle";
 
 const refreshLocalStorage = (store: RootState) =>
   localStorage.setItem("articles", JSON.stringify(store.reducerStarter));
@@ -41,7 +45,7 @@ const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 //worker saga которая будет запускатся в зависимости от какого-то экшена
 //выполняет бизнес логику(запрос/таймаут/запись в кэш и т.д.)
 
-export function* workerSaga() {
+export function* workerSaga(action: BaseAction<FormType>) {
   yield delay(500);
   const store: RootState = yield select((store) => store);
   console.log(store);
@@ -51,7 +55,7 @@ export function* workerSaga() {
   // yield console.log("увеличился счетчик");
   yield delay(1000);
   yield refreshLocalStorage(store);
-  yield console.log("обновился LocalStorage");
+  yield console.log("обновился LocalStorage", "add :", action.payload);
 }
 
 const getLocalStorage = () => {
@@ -62,13 +66,24 @@ const getLocalStorage = () => {
   return JSON.parse(localStorageList);
 };
 
+//получение списка артиклей из localstorage
 export function* workerGetArticles() {
   yield delay(2000);
   const newStore: FormType[] = getLocalStorage();
-  console.log("workerGetArticles - newStore", newStore);
+  // console.log("workerGetArticles - newStore", newStore);
 
   yield put({ type: SET_ARTICLE_TO_STATE, payload: newStore });
 }
+
+//Удаление  артикля из localstorage
+// export function* workerRemoveArticles() {
+//   yield delay(1000);
+//   const newStore: FormType[] = getLocalStorage();
+
+//   console.log("workerGetArticles - newStore action");
+
+//   yield put({ type: REMOVE_ARTICLE, payload: "id" });
+// }
 
 //saga watcher  следят за dispatch'ем action  в приложении и когда происходит
 //какойто экшен они выполняют какое-то действие запускают worker
@@ -78,11 +93,15 @@ export function* watchClickEditSaga() {
 }
 
 export function* watchClickAddSaga() {
-  yield takeEvery(ADD_ARTICLE, workerSaga);
+  const action: BaseAction<FormType> = yield takeEvery(ADD_ARTICLE, workerSaga);
 }
 
 export function* watchClickRemoveSaga() {
-  yield takeEvery(REMOVE_ARTICLE, workerSaga);
+  const action: BaseAction<string> = yield takeEvery(
+    REMOVE_ARTICLE_LOCALSTORAGE,
+    workerRemoveArticles
+  );
+  put(removeArticle("id"));
 }
 
 export function* watchGetArticles() {
@@ -95,10 +114,10 @@ export function* rootSaga() {
   // yield watchClickSaga();
   // yield fork(watchClickSaga); //неблокируемый запуск но задача привязывается к родителю
   // yield spawn(watchClickEditSaga); //создает паралельную задачу в корне саги, сам процесс не привязывается к родителю
-  yield spawn(watchClickEditSaga);
-  yield spawn(watchClickAddSaga);
-  yield spawn(watchClickRemoveSaga);
-  yield spawn(watchGetArticles);
+  yield fork(watchClickEditSaga);
+  yield fork(watchClickAddSaga);
+  yield fork(watchClickRemoveSaga);
+  yield fork(watchGetArticles);
 
   // yield watchClickEditSaga();
   // yield watchClickAddSaga();
