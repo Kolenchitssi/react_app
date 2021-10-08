@@ -9,6 +9,7 @@ import {
 import { AddArticle } from "./Main/components/AddArticle/AddArticle";
 import { EditArticle } from "./Main/components/EditArticle/EditArticle";
 import { ViewArticle } from "./Main/components/ViewArticle/ViewArticle";
+import StarWars from "./StarWars/StarWars";
 
 // import About from '../containers/About/About';
 // import Counters from './Counters/Counters';
@@ -46,6 +47,11 @@ function MyRouter(): JSX.Element {
                 Counters
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/sw" className="nav-link">
+                StarWars
+              </NavLink>
+            </li>
           </ul>
         </nav>
 
@@ -59,6 +65,9 @@ function MyRouter(): JSX.Element {
             </Route>
             <Route path="/counters">
               <Counters />
+            </Route>
+            <Route path="/sw">
+              <StarWars />
             </Route>
             <Route path="/article/:id/view">
               <ViewArticle />

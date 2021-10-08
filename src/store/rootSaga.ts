@@ -1,9 +1,11 @@
 import { fork } from "redux-saga/effects";
 
 import { rootArticleSaga } from "../routes/Main/modules/sagas/rootArticleSaga";
+import { rootStarWarsSaga } from "../routes/StarWars/store/saga";
 
 export function* rootSaga() {
   yield fork(rootArticleSaga);
+  yield fork(rootStarWarsSaga);
 }
 
 //эффекты -вспомогательные функции которые создают простые объекты котрые содержат инструкции

@@ -5,6 +5,9 @@ import { FormType } from "../../store/models";
 import style from "./Form.module.scss";
 
 import { DateForm } from "../DateForm/DateForm";
+import { useAppSelector } from "../../store/hook";
+
+
 
 type PropsArticleForm = {
   // [key: string]: any;
@@ -13,6 +16,8 @@ type PropsArticleForm = {
   typeAction: "ADD" | "EDIT";
   initialVal: FormType;
 };
+
+
 
 const validationSchema = Yup.object({
   title: Yup.string()
@@ -27,21 +32,30 @@ const validationSchema = Yup.object({
     .min(2, "Length name author is at least 2 characters "),
 });
 
+
+
 export function NewForm({
   typeAction,
   actionSubmit,
   actionCancel,
   initialVal,
+
 }: PropsArticleForm): JSX.Element {
   const goHome = actionCancel;
 
+  const successEdit = useAppSelector(store => store.connectedReducer.editSuccess);
+
   const submit = (
     values: FormType,
-    { setSubmitting }: { setSubmitting: (isSubmiting: boolean) => void }
+    { setSubmitting }: { setSubmitting: (isSubmiting: boolean) => void },
   ) => {
     actionSubmit(values);
     setSubmitting(false);
-    goHome();
+    console.log("successEdit", successEdit);
+
+    if (successEdit) {
+      goHome();
+    }
   };
 
   return (

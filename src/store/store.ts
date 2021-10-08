@@ -2,7 +2,8 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { counterClassicReducerObj } from "../routes/Counters/store/reducer";
 
 import { reducerStarter } from "../routes/Main/modules/store/reducer";
-import { starWarReducer } from "../routes//StarWars/store/reducer";
+import { starWarReducer } from "../routes/StarWars/store/reducer";
+import { connectedReducer } from "../routes/Main/components/store/reducer";
 
 // create Saga============================================
 import createSagaMiddleware from "redux-saga";
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   counterClassicReducerObj,
   reducerStarter,
   starWarReducer,
+  connectedReducer,
 });
 
 export const store = createStore(

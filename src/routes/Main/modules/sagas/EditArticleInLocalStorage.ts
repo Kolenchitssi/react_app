@@ -1,5 +1,6 @@
-import { call, put, takeEvery } from "@redux-saga/core/effects";
-import { BaseAction, FormType } from "../../../../store/models";
+import { call, put, select, takeEvery } from "@redux-saga/core/effects";
+import { BaseAction, FormType, RootState } from "../../../../store/models";
+import { successConnected } from "../../components/store/action";
 import { delay } from "../asistansFunction/delay";
 import { getLocalStorage } from "../asistansFunction/getLocalStorage";
 import refreshLocalStorage from "../asistansFunction/refreshLocalStorage1";
@@ -24,10 +25,14 @@ function* editArticleWorker(action: BaseAction<FormType>) {
 
   if (action.payload.title !== "ded") {
     yield call(refreshLocalStorage, editLocalStorage);
-
-    yield delay(2000);
     yield put(editArticle(action.payload));
+    yield put(successConnected(true));
+
+    // const store: RootState = yield select((store) => store);
+    // console.log(store);
+
   } else {
+    yield put(successConnected(false));
     alert("ERROR: STOP DED");
   }
 }

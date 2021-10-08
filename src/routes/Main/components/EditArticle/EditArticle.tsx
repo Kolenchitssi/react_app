@@ -9,6 +9,7 @@ export const EditArticle = () => {
   const articleId: { id: string } = useParams();
   const resultId = articleId.id;
 
+
   const saveExistArticle = (currentArticles: FormType) => {
     dispatch(editArticleToLocalStorage(currentArticles));
   };
@@ -28,7 +29,7 @@ export const EditArticle = () => {
       typeAction="EDIT"
       actionCancel={goHome}
       IdProps={resultId}
-      // initialVal={initialValue}
+    // initialVal={initialValue}
     />
   );
 };
