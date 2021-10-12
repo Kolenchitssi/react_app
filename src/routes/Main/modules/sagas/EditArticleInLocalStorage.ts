@@ -1,6 +1,6 @@
 import { call, put, select, takeEvery } from "@redux-saga/core/effects";
 import { Redirect, useHistory } from "react-router";
-import { push } from "react-router-redux";
+// import { push } from "connected-router-redux";
 import { BaseAction, FormType, RootState } from "../../../../store/models";
 import { successConnected } from "../../components/store/action";
 import { delay } from "../asistansFunction/delay";
@@ -29,16 +29,14 @@ function* editArticleWorker(action: BaseAction<FormType>) {
     yield call(refreshLocalStorage, editLocalStorage);
     yield put(editArticle(action.payload));
     yield put(successConnected(true));
-    yield put(push('/')); //  use push to redirect to desired location
-
-
+    // yield put(push('/')); //  use push to redirect to desired location
   } else {
     yield put(successConnected(false));
     alert("ERROR: STOP DED");
   }
 
-  const editResult: RootState = yield select((store) => store.connectedReducer.editSuccess);
+  const editResult: RootState = yield select(
+    (store) => store.connectedReducer.editSuccess
+  );
   console.log(editResult);
-
-
 }

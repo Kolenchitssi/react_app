@@ -7,8 +7,7 @@ import {
 } from "react-router-dom";
 
 // import { Router, Route, browserHistory } from 'react-router'
-// import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-
+// import { syncHistoryWithStore, routerReducer } from "react-router-redux";
 
 import { AddArticle } from "./Main/components/AddArticle/AddArticle";
 import { EditArticle } from "./Main/components/EditArticle/EditArticle";
@@ -27,11 +26,11 @@ const NotFound = lazy(() => import("./NotFound/NotFound"));
 // const Modal = lazy(() => import("./Main/Modal/Modal"));
 
 // Create an enhanced history that syncs navigation events with the store
-// const history = syncHistoryWithStore(browserHistory, store)
+// const history = syncHistoryWithStore(browserHistory, store);
 
 function MyRouter(): JSX.Element {
   return (
-    <Router /*history={history}*/ >
+    <Router /*history={history}*/>
       <div>
         <nav>
           <ul style={{ display: "flex", justifyContent: "space-evenly" }}>

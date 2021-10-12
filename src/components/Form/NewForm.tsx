@@ -5,9 +5,10 @@ import { FormType } from "../../store/models";
 import style from "./Form.module.scss";
 
 import { DateForm } from "../DateForm/DateForm";
-import { useAppSelector } from "../../store/hook";
-
-
+import { useAppDispatch, useAppSelector } from "../../store/hook";
+import { useEffect } from "react";
+import { successConnected } from "../../routes/Main/components/store/action";
+import { Redirect } from "react-router";
 
 type PropsArticleForm = {
   // [key: string]: any;
@@ -16,8 +17,6 @@ type PropsArticleForm = {
   typeAction: "ADD" | "EDIT";
   initialVal: FormType;
 };
-
-
 
 const validationSchema = Yup.object({
   title: Yup.string()
@@ -32,83 +31,92 @@ const validationSchema = Yup.object({
     .min(2, "Length name author is at least 2 characters "),
 });
 
-
+let resultFormEdition: JSX.Element;
 
 export function NewForm({
   typeAction,
   actionSubmit,
   actionCancel,
   initialVal,
-
 }: PropsArticleForm): JSX.Element {
   const goHome = actionCancel;
 
-  const successEdit = useAppSelector(store => store.connectedReducer.editSuccess);
+  let successEdit = useAppSelector(
+    (store) => store.connectedReducer.editSuccess
+  );
+
+  // const dispatch = useAppDispatch();
+
+  // useEffect(() => {
+  //   console.log("смотрим  за successEdit", successEdit);
+  //   if (successEdit) {
+  //     goHome();
+  //     dispatch(successConnected(false));
+  //   }
+  // }, [successEdit]);
 
   const submit = (
     values: FormType,
-    { setSubmitting }: { setSubmitting: (isSubmiting: boolean) => void },
+    { setSubmitting }: { setSubmitting: (isSubmiting: boolean) => void }
   ) => {
     actionSubmit(values);
     setSubmitting(false);
     console.log("successEdit", successEdit);
-
-    // if (successEdit) {
-    //   goHome();
-    // }
   };
 
-  return (
-    <Formik
-      initialValues={initialVal}
-      validationSchema={validationSchema}
-      onSubmit={submit}
-    >
-      {({ handleReset, isSubmitting }) => (
-        <Form className={style.form}>
-          <div>
-            <label htmlFor={style.title}> title : </label>
-            <Field
-              type="title"
-              name="title"
-              id={style.title}
-              placeholder="Add title"
-            />
+  useEffect(() => {
+    if (!successEdit) {
+      resultFormEdition = (
+        <Formik
+          initialValues={initialVal}
+          validationSchema={validationSchema}
+          onSubmit={submit}
+        >
+          {({ handleReset, isSubmitting }) => (
+            <Form className={style.form}>
+              <div>
+                <label htmlFor={style.title}> title : </label>
+                <Field
+                  type="title"
+                  name="title"
+                  id={style.title}
+                  placeholder="Add title"
+                />
 
-            <span className={style.errors}>
-              <ErrorMessage name="title" />
-            </span>
-          </div>
-          <div>
-            <label htmlFor={style.textArea}> text : </label>
-            <Field
-              as="textarea"
-              name="text"
-              className={style.textArea}
-              id={style.textArea}
-              placeholder="Add your text"
-            />
-            <span className={style.errors}>
-              <ErrorMessage name="text" />
-            </span>
-          </div>
+                <span className={style.errors}>
+                  <ErrorMessage name="title" />
+                </span>
+              </div>
+              <div>
+                <label htmlFor={style.textArea}> text : </label>
+                <Field
+                  as="textarea"
+                  name="text"
+                  className={style.textArea}
+                  id={style.textArea}
+                  placeholder="Add your text"
+                />
+                <span className={style.errors}>
+                  <ErrorMessage name="text" />
+                </span>
+              </div>
 
-          <div>
-            <label htmlFor={style.author}> author : </label>
+              <div>
+                <label htmlFor={style.author}> author : </label>
 
-            <Field
-              type="author"
-              name="author"
-              id={style.author}
-              placeholder="Add author"
-            />
+                <Field
+                  type="author"
+                  name="author"
+                  id={style.author}
+                  placeholder="Add author"
+                />
 
-            <span className={style.errors}>
-              <ErrorMessage name="author" component="span" />
-            </span>
-          </div>
+                <span className={style.errors}>
+                  <ErrorMessage name="author" component="span" />
+                </span>
+              </div>
 
-          {/* <div>
+              {/* <div>
             <label htmlFor={style.date}> date : </label>
             <Field type="date" name="date" id={style.date} />
             <span className={style.errors}>
@@ -116,56 +124,64 @@ export function NewForm({
             </span>
           </div> */}
 
-          <div>
-            <label htmlFor={style.date}> date : </label>
-            <DateForm name="date" id={style.date} />
-            <span className={style.errors}>
-              <ErrorMessage name="date" />
-            </span>
-          </div>
+              <div>
+                <label htmlFor={style.date}> date : </label>
+                <DateForm name="date" id={style.date} />
+                <span className={style.errors}>
+                  <ErrorMessage name="date" />
+                </span>
+              </div>
 
-          <div className={style.formButton}>
-            {typeAction === "ADD" ? (
-              <button
-                type="submit"
-                className="btn btn-success"
-                disabled={
-                  isSubmitting
-                } /*кнопка недоступна когда идет отправка*/
-              >
-                Add
-              </button>
-            ) : (
-              <button
-                type="submit"
-                className="btn btn-success"
-                disabled={
-                  isSubmitting
-                } /*кнопка недоступна когда идет отправка*/
-              >
-                Save
-              </button>
-            )}
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={() => goHome()}
-              disabled={isSubmitting} /*кнопка недоступна когда идет отправка*/
-            >
-              Cancel
-            </button>
+              <div className={style.formButton}>
+                {typeAction === "ADD" ? (
+                  <button
+                    type="submit"
+                    className="btn btn-success"
+                    disabled={
+                      isSubmitting
+                    } /*кнопка недоступна когда идет отправка*/
+                  >
+                    Add
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className="btn btn-success"
+                    disabled={
+                      isSubmitting
+                    } /*кнопка недоступна когда идет отправка*/
+                  >
+                    Save
+                  </button>
+                )}
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => goHome()}
+                  disabled={
+                    isSubmitting
+                  } /*кнопка недоступна когда идет отправка*/
+                >
+                  Cancel
+                </button>
 
-            <button
-              type="reset"
-              className="btn btn-warning"
-              onClick={() => handleReset()}
-              disabled={isSubmitting}
-            >
-              Reset
-            </button>
-          </div>
-        </Form>
-      )}
-    </Formik>
-  );
+                <button
+                  type="reset"
+                  className="btn btn-warning"
+                  onClick={() => handleReset()}
+                  disabled={isSubmitting}
+                >
+                  Reset
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      );
+    } else {
+      resultFormEdition = <Redirect to="/" />;
+    }
+  }, [successEdit]);
+
+  return resultFormEdition;
 }
