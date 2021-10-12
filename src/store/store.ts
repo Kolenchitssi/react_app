@@ -1,4 +1,5 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import { routerReducer } from "react-router-redux"
 import { counterClassicReducerObj } from "../routes/Counters/store/reducer";
 
 import { reducerStarter } from "../routes/Main/modules/store/reducer";
@@ -23,6 +24,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 const rootReducer = combineReducers({
+  routerReducer,
   counterClassicReducerObj,
   reducerStarter,
   starWarReducer,
