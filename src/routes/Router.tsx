@@ -1,3 +1,4 @@
+import { ConnectedRouter } from "connected-react-router";
 import { lazy, Suspense } from "react";
 import {
   BrowserRouter as Router,
@@ -6,9 +7,10 @@ import {
   Switch,
 } from "react-router-dom";
 
+import { store, history } from "../store/store";
+
 // import { Router, Route, browserHistory } from 'react-router'
 // import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-
 
 import { AddArticle } from "./Main/components/AddArticle/AddArticle";
 import { EditArticle } from "./Main/components/EditArticle/EditArticle";
@@ -31,7 +33,7 @@ const NotFound = lazy(() => import("./NotFound/NotFound"));
 
 function MyRouter(): JSX.Element {
   return (
-    <Router /*history={history}*/ >
+    <ConnectedRouter history={history}>
       <div>
         <nav>
           <ul style={{ display: "flex", justifyContent: "space-evenly" }}>
@@ -91,7 +93,7 @@ function MyRouter(): JSX.Element {
           </Switch>
         </Suspense>
       </div>
-    </Router>
+    </ConnectedRouter>
   );
 }
 

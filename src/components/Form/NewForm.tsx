@@ -42,15 +42,15 @@ export function NewForm({
     (store) => store.connectedReducer.editSuccess
   );
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    console.log("смотрим  за successEdit", successEdit);
-    if (successEdit) {
-      goHome();
-      dispatch(successConnected(false));
-    }
-  }, [successEdit]);
+  // useEffect(() => {
+  //   console.log("смотрим  за successEdit", successEdit);
+  //   if (successEdit) {
+  //     goHome();
+  //     dispatch(successConnected(false));
+  //   }
+  // }, [successEdit]);
 
   const submit = (
     values: FormType,

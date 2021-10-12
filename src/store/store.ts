@@ -1,5 +1,6 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
-import { routerReducer } from "react-router-redux"
+import { connectRouter, routerMiddleware } from "connected-react-router";
+import { createBrowserHistory } from "history";
 import { counterClassicReducerObj } from "../routes/Counters/store/reducer";
 
 import { reducerStarter } from "../routes/Main/modules/store/reducer";
@@ -23,17 +24,20 @@ if (process.env.NODE_ENV === "development") {
   }
 }
 
+export const history = createBrowserHistory();
+
 const rootReducer = combineReducers({
-  routerReducer,
+  connectRouter: connectRouter(history),
   counterClassicReducerObj,
   reducerStarter,
   starWarReducer,
   connectedReducer,
 });
 
+//тут экспорт функции ппо другому немного
 export const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(sagaMiddleware)) //Saga
+  composeEnhancers(applyMiddleware(routerMiddleware(history), sagaMiddleware)) //Saga
 );
 
 //======запуск Saga========
