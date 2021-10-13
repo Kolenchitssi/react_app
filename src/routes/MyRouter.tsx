@@ -1,13 +1,8 @@
 import { ConnectedRouter } from "connected-react-router";
 import { lazy, Suspense } from "react";
-import {
-  BrowserRouter as Router,
-  NavLink,
-  Route,
-  Switch,
-} from "react-router-dom";
-
-import { store, history } from "../store/store";
+import { Route, Switch } from "react-router";
+import { BrowserRouter, NavLink } from "react-router-dom";
+import { AppProps } from "../App";
 
 // import { Router, Route, browserHistory } from 'react-router'
 // import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
@@ -17,10 +12,10 @@ import { EditArticle } from "./Main/components/EditArticle/EditArticle";
 import { ViewArticle } from "./Main/components/ViewArticle/ViewArticle";
 import StarWars from "./StarWars/StarWars";
 
-// import About from '../containers/About/About';
-// import Counters from './Counters/Counters';
-// import Main from '../containers/Main/Main';
-// import NotFound from '../containers/NotFound/NotFound';
+// import About from "./About/About";
+// import Counters from "./Counters/Counters";
+// import Main from "./Main/Main";
+// import NotFound from "./NotFound/NotFound";
 
 const About = lazy(() => import("./About/About"));
 const Main = lazy(() => import("./Main/Main"));
@@ -31,7 +26,7 @@ const NotFound = lazy(() => import("./NotFound/NotFound"));
 // Create an enhanced history that syncs navigation events with the store
 // const history = syncHistoryWithStore(browserHistory, store)
 
-function MyRouter(): JSX.Element {
+function MyRouter({ history }: AppProps): JSX.Element {
   return (
     <ConnectedRouter history={history}>
       <div>

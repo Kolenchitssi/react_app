@@ -19,7 +19,7 @@ function* loadPlanets() {
   yield put(setPlanetsStarWars(planetsSW));
 }
 
-function* workClickSWSaga() {
+function* workClickSWSaga() {  
   yield fork(loadPeople)
   yield fork(loadPlanets)
 

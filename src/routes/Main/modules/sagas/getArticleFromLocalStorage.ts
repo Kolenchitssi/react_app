@@ -13,6 +13,6 @@ export function* watchGetArticles() {
 function* workerGetArticles() {
   yield delay(1000);
   const newStore: FormType[] = yield getLocalStorage();
-  console.log("workerGetArticles - newStore", newStore);
+  yield console.log("workerGetArticles - newStore", newStore);
   yield put(setArticleToState(newStore));
 }
