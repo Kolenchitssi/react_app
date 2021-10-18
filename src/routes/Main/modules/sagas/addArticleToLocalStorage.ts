@@ -1,4 +1,5 @@
 import { call, put, takeEvery } from "@redux-saga/core/effects";
+import { push } from "connected-react-router";
 import { BaseAction, FormType } from "../../../../store/models";
 import { delay } from "../asistansFunction/delay";
 import { getLocalStorage } from "../asistansFunction/getLocalStorage";
@@ -19,6 +20,7 @@ function* addArticleWorker(action: BaseAction<FormType>) {
     yield call(refreshLocalStorage, currentLocalStorage);
     yield delay(2000);
     yield put(addArticle(action.payload));
+    yield put(push("/")); //  use push to redirect to desired location
   } else {
     alert("ERROR: STOP DED");
   }

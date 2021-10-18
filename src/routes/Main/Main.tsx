@@ -89,6 +89,7 @@ const Main = React.memo((): JSX.Element => {
             key={items.key}
             author={items.author}
             date={items.date}
+            picture={items.picture}
           />
         );
       })}

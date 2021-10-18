@@ -19,6 +19,7 @@ const initialState = [
     key: "",
     title: "",
     text: "",
+    picture: "",
     date: new Date(),
     author: "",
   },

@@ -6,6 +6,7 @@ export const articlesList: Array<FormType> = [
     title: "Title1",
     text: "Text text  text text text text text text text text text 1111111111",
     date: new Date(),
+    picture: "",
     author: "Author1",
 
     get key() {
@@ -18,6 +19,7 @@ export const articlesList: Array<FormType> = [
     title: "Title2",
     text: "Text text  text text text text text text text text text 2222222",
     date: new Date(),
+    picture: "",
     author: "Author2",
 
     get key() {
@@ -30,6 +32,7 @@ export const articlesList: Array<FormType> = [
     title: "Title3",
     text: "Text text  text text text text text text text text text 3333",
     date: new Date(),
+    picture: "",
     author: "Author1",
 
     get key() {
@@ -42,6 +45,7 @@ export const articlesList: Array<FormType> = [
     title: "Title4",
     text: "Text text444444444  text text text text text text text text text 4444",
     date: new Date(),
+    picture: "",
     author: "Author2",
 
     get key() {
@@ -53,6 +57,7 @@ export const articlesList: Array<FormType> = [
     title: "Title5",
     text: "Text text555555555  text text text text text text text text text 555",
     date: new Date(),
+    picture: "",
     author: "Author1",
 
     get key() {
@@ -65,6 +70,7 @@ export const articlesList: Array<FormType> = [
     title: "Title6",
     text: "Text6666666666 text  text text text text text text text text text 6666",
     date: new Date(),
+    picture: "",
     author: "Author2",
 
     get key() {
@@ -77,6 +83,7 @@ export const articlesList: Array<FormType> = [
     title: "Title7",
     text: "Text text  text text text text text text text text text 7777777777",
     date: new Date(),
+    picture: "",
     author: "Author1",
 
     get key() {
@@ -89,6 +96,7 @@ export const articlesList: Array<FormType> = [
     title: "Title8",
     text: "Text 88888888888text  text text text text text text text text text ",
     date: new Date(),
+    picture: "",
     author: "Author2",
 
     get key() {
@@ -101,6 +109,7 @@ export const articlesList: Array<FormType> = [
     title: "Title9",
     text: "Text text  text text text text text text text text text 9999",
     date: new Date(),
+    picture: "",
     author: "Author3",
 
     get key() {
@@ -113,6 +122,7 @@ export const articlesList: Array<FormType> = [
     title: "Title10",
     text: "Text text  text text text text text text text text text 10",
     date: new Date(),
+    picture: "",
     author: "Author2",
 
     get key() {
@@ -125,6 +135,7 @@ export const articlesList: Array<FormType> = [
     title: "Title11",
     text: "Text text  text text text text text text text text text 11",
     date: new Date(),
+    picture: "",
     author: "Author3",
 
     get key() {
@@ -137,6 +148,7 @@ export const articlesList: Array<FormType> = [
     title: "Title12",
     text: "Text   text text text text text text text text text 12",
     date: new Date(),
+    picture: "",
     author: "Author4",
 
     get key() {
@@ -148,6 +160,7 @@ export const articlesList: Array<FormType> = [
     title: "Title13",
     text: "Text text555555555  text text text text text text text text text 13",
     date: new Date(),
+    picture: "",
     author: "Author3",
 
     get key() {
@@ -160,6 +173,7 @@ export const articlesList: Array<FormType> = [
     title: "Title14",
     text: "Text6666666666 text  text text text text text text text text text 14",
     date: new Date(),
+    picture: "",
     author: "Author2",
 
     get key() {
@@ -172,6 +186,7 @@ export const articlesList: Array<FormType> = [
     title: "Title15",
     text: "Text text  text text text text text text text text text 15",
     date: new Date(),
+    picture: "",
     author: "Author5",
 
     get key() {
@@ -184,6 +199,7 @@ export const articlesList: Array<FormType> = [
     title: "Title16",
     text: "Text   text text text text text text text text text 16",
     date: new Date(),
+    picture: "",
     author: "Author2",
 
     get key() {

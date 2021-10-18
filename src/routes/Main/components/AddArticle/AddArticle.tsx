@@ -9,6 +9,7 @@ const initialValue = {
   title: "",
   text: "",
   date: new Date(),
+  picture: "",
   author: "",
   id: "",
   key: "",

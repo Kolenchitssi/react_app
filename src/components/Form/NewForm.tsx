@@ -57,6 +57,7 @@ export function NewForm({
     { setSubmitting }: { setSubmitting: (isSubmiting: boolean) => void }
   ) => {
     actionSubmit(values);
+    console.log("values", values);
     setSubmitting(false);
     console.log("successEdit", successEdit);
 
@@ -71,7 +72,7 @@ export function NewForm({
       validationSchema={validationSchema}
       onSubmit={submit}
     >
-      {({ handleReset, isSubmitting }) => (
+      {({ values, handleChange, handleBlur, handleReset, isSubmitting }) => (
         <Form className={style.form}>
           <div>
             <label htmlFor={style.title}> title : </label>
@@ -101,6 +102,24 @@ export function NewForm({
           </div>
 
           <div>
+            <label htmlFor={style.picture}> add picture : </label>
+            <input id="picture" name="picture" type="file" onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.picture} />
+
+            {/* <Field
+              type="file"
+              name="picture"
+              id={style.picture}
+              placeholder="Add picture"
+            /> */}
+
+            <span className={style.errors}>
+              <ErrorMessage name="author" component="span" />
+            </span>
+          </div>
+
+          <div>
             <label htmlFor={style.author}> author : </label>
 
             <Field
@@ -117,7 +136,7 @@ export function NewForm({
 
           {/* <div>
             <label htmlFor={style.date}> date : </label>
-            <Field type="date" name="date" id={style.date} />
+            <Field as={<DateForm />} name="date" id={style.date} />
             <span className={style.errors}>
               <ErrorMessage name="date" />
             </span>

@@ -22,4 +22,5 @@ export type FormType = {
   author: string;
   id: string;
   key: string;
+  picture: string;
 };
