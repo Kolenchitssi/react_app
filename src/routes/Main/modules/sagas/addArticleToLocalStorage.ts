@@ -13,8 +13,10 @@ export function* watchClickAddSaga() {
 function* addArticleWorker(action: BaseAction<FormType>) {
   yield delay(500);
   yield console.log("start add article");
+  const pictureWay = action.payload.picture;
 
   const currentLocalStorage: FormType[] = yield getLocalStorage();
+
   currentLocalStorage.push(action.payload);
   if (action.payload.title !== "ded") {
     yield call(refreshLocalStorage, currentLocalStorage);

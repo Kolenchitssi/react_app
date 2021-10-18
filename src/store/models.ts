@@ -23,4 +23,5 @@ export type FormType = {
   id: string;
   key: string;
   picture: string;
+  picture64base?: string;
 };

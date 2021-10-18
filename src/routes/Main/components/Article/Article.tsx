@@ -34,7 +34,19 @@ function Article(props: FormType): JSX.Element {
         <h4>{props.title}</h4>
       </Link>
       <div className={styles.articleText}>
-        <p className={styles.textArea}>{props.text}</p>
+        <p className={styles.textArea}>
+          {props.text}
+          {props.picture64base !== undefined ? (
+            <img
+              style={{ maxWidth: "80px", maxHeight: "80px" }}
+              src={props.picture64base}
+              alt=""
+            />
+          ) : (
+            <span></span>
+          )}
+        </p>
+
         <Button
           typeButton="secondary"
           textButton="Edit"

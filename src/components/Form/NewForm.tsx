@@ -41,29 +41,17 @@ export function NewForm({
   const successEdit = useAppSelector(
     (store) => store.connectedReducer.editSuccess
   );
-
-  // const dispatch = useAppDispatch();
-
-  // useEffect(() => {
-  //   console.log("смотрим  за successEdit", successEdit);
-  //   if (successEdit) {
-  //     goHome();
-  //     dispatch(successConnected(false));
-  //   }
-  // }, [successEdit]);
+  let picture64base = initialVal.picture64base;
 
   const submit = (
     values: FormType,
     { setSubmitting }: { setSubmitting: (isSubmiting: boolean) => void }
   ) => {
+    values.picture64base = picture64base;
     actionSubmit(values);
     console.log("values", values);
     setSubmitting(false);
     console.log("successEdit", successEdit);
-
-    // if (successEdit) {
-    //   goHome();
-    // }
   };
 
   return (
@@ -96,58 +84,104 @@ export function NewForm({
               id={style.textArea}
               placeholder="Add your text"
             />
+            <p>
+              <img
+                style={{ maxWidth: "320px", maxHeight: "320px" }}
+                src={values.picture64base}
+                alt=""
+              />
+            </p>
             <span className={style.errors}>
               <ErrorMessage name="text" />
             </span>
           </div>
 
-          <div>
-            <label htmlFor={style.picture}> add picture : </label>
-            <input id="picture" name="picture" type="file" onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.picture} />
+          <div className={style.inputWrapper}>
+            <div>
+              <label htmlFor={style.picture}> add picture : </label>
+              <input
+                id="picture"
+                name="picture"
+                type="file"
+                className={style.input}
+                onChange={(event) => {
+                  const files = event.target.files;
+                  let reader = new FileReader();
+                  if (files) {
+                    reader.readAsDataURL(files[0]);
+                    reader.onload = (e) => {
+                      // console.log(e.target?.result);
+                      if (e.target?.result) {
+                        picture64base = String(e.target?.result);
+                        // values.picture64base = String(e.target?.result);
+                        console.log(values);
+                      }
+                    };
+                    console.log(
+                      "event",
+                      event,
+                      "values",
+                      values,
+                      "files",
+                      files
+                    );
+                    handleChange(event);
+                  }
+                }}
+                onBlur={handleBlur}
+                // value={values.picture}
+              />
 
-            {/* <Field
+              {/* <Field
               type="file"
               name="picture"
               id={style.picture}
               placeholder="Add picture"
             /> */}
 
-            <span className={style.errors}>
-              <ErrorMessage name="author" component="span" />
-            </span>
-          </div>
+              <span className={style.errors}>
+                <ErrorMessage name="author" component="span" />
+              </span>
+            </div>
 
-          <div>
-            <label htmlFor={style.author}> author : </label>
+            <div>
+              <label htmlFor={style.author}> author : </label>
 
-            <Field
-              type="author"
-              name="author"
-              id={style.author}
-              placeholder="Add author"
-            />
+              <Field
+                type="author"
+                name="author"
+                className={style.input}
+                id={style.author}
+                placeholder="Add author"
+              />
 
-            <span className={style.errors}>
-              <ErrorMessage name="author" component="span" />
-            </span>
-          </div>
+              <span className={style.errors}>
+                <ErrorMessage name="author" component="span" />
+              </span>
+            </div>
 
-          {/* <div>
-            <label htmlFor={style.date}> date : </label>
-            <Field as={<DateForm />} name="date" id={style.date} />
-            <span className={style.errors}>
-              <ErrorMessage name="date" />
-            </span>
-          </div> */}
+            <div>
+              <label htmlFor={style.date}> date : </label>
 
-          <div>
+              <Field
+                type="date"
+                name="date"
+                className={style.input}
+                id={style.date}
+                value={values.date}
+              />
+              <span className={style.errors}>
+                <ErrorMessage name="date" />
+              </span>
+            </div>
+
+            {/* <div>
             <label htmlFor={style.date}> date : </label>
             <DateForm name="date" id={style.date} />
             <span className={style.errors}>
               <ErrorMessage name="date" />
             </span>
+          </div> */}
           </div>
 
           <div className={style.formButton}>

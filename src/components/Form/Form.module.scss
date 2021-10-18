@@ -32,6 +32,23 @@ textarea {
   border-radius: 4px;
 }
 
+.inputWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 1440px) {
+  .inputWrapper {
+    display: block;
+    text-align: center;
+  }
+}
+
+.input {
+  margin: 8px;
+}
+
 .formButton {
   margin-top: 20px;
   display: flex;

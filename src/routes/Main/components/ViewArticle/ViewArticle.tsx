@@ -26,6 +26,11 @@ export function ViewArticle(): JSX.Element {
       <div className={style.textWrapper}>
         {" "}
         <p>{article?.text}</p>{" "}
+        <img
+          style={{ maxWidth: "320px", maxHeight: "320px" }}
+          src={article?.picture64base}
+          alt=""
+        />
       </div>
 
       <div>

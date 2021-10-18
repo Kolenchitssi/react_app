@@ -23,9 +23,6 @@ const Counters = lazy(() => import("./Counters/Counters"));
 const NotFound = lazy(() => import("./NotFound/NotFound"));
 // const Modal = lazy(() => import("./Main/Modal/Modal"));
 
-// Create an enhanced history that syncs navigation events with the store
-// const history = syncHistoryWithStore(browserHistory, store)
-
 function MyRouter({ history }: AppProps): JSX.Element {
   return (
     <ConnectedRouter history={history}>
