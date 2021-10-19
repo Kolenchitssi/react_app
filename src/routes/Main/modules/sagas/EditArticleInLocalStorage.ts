@@ -8,21 +8,16 @@ import { getLocalStorage } from "../asistansFunction/getLocalStorage";
 import refreshLocalStorage from "../asistansFunction/refreshLocalStorage1";
 import { editArticle, EDIT_ARTICLE_LOCALSTORAGE } from "../store/action";
 
-export function* watchClickEditSaga() {
-  yield takeEvery(EDIT_ARTICLE_LOCALSTORAGE, editArticleWorker);
-}
 
 function* editArticleWorker(action: BaseAction<FormType>) {
   yield delay(500);
-  yield console.log("start edit");
+  // yield console.log("start edit");
 
   const currentLocalStorage: FormType[] = yield getLocalStorage();
   const editLocalStorage = currentLocalStorage.map((item) => {
     if (item.id === action.payload.id) {
       return action.payload;
-    } else {
-      return item;
-    }
+    }       return item;
   });
 
   if (action.payload.title !== "ded") {
@@ -38,5 +33,9 @@ function* editArticleWorker(action: BaseAction<FormType>) {
   const editResult: RootState = yield select(
     (store) => store.connectedReducer.editSuccess
   );
-  console.log(editResult);
+  // console.log(editResult);
+}
+
+export function* watchClickEditSaga() {
+  yield takeEvery(EDIT_ARTICLE_LOCALSTORAGE, editArticleWorker);
 }

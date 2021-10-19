@@ -11,19 +11,13 @@ const defaultState: StateLocal = {
 };
 
 const listReducer: ReducerType<StateLocal> = {
-  [SET_PEOPLE_STAR_WARS]: (state: StateLocal, action) => {
-    return {
-      ...state,
-      people: [...action.payload]
-    }
-  },
+  [SET_PEOPLE_STAR_WARS]: (state: StateLocal, action) => ({ ...state,people: [...action.payload]  }),
 
-  [SET_PLANETS_STAR_WARS]: (state: StateLocal, action) => {
-    return {
+  [SET_PLANETS_STAR_WARS]: (state: StateLocal, action) => ( {
       ...state,
       planets: [...action.payload]
     }
-  }
+  )
 
 };
 

@@ -16,11 +16,11 @@ function CounterOld(): JSX.Element {
   // View: the UI definition
   return (
     <div>
-      <button className="btn btn-secondary" onClick={decrement}>
+      <button type="button" className="btn btn-secondary" onClick={decrement}>
         Decrement
       </button>{" "}
       Value: {counter}{" "}
-      <button className="btn btn-primary" onClick={increment}>
+      <button type="button" className="btn btn-primary" onClick={increment}>
         Increment
       </button>
     </div>

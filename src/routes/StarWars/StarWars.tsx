@@ -3,17 +3,17 @@ import { getStarWars } from "./store/action";
 
 function StarWars(): JSX.Element {
   const dispatch = useAppDispatch();
-  const store = useAppSelector(store => store);
+  const store = useAppSelector(storeInput => storeInput);
 
 
   const getUser = () => {
     dispatch(getStarWars());
-    console.log(store);
+    // console.log(store);
   }
   type Planets = {
     name: string;
     diameter: string;
-    orbital_period: string;
+    orbitalPeriod: string;
     gravity: string;
     population: string;
     [key: string]: string
@@ -23,23 +23,23 @@ function StarWars(): JSX.Element {
     name: string;
     height: string;
     mass: string;
-    skin_color: string;
+    skinColor: string;
     [key: string]: string
   }
 
-  const planets: Planets[] = useAppSelector(store => store.starWarReducer.planets)
-  const peoples: People[] = useAppSelector(store => store.starWarReducer.people)
+  const planets: Planets[] = useAppSelector(storeInput => storeInput.starWarReducer.planets)
+  const peoples: People[] = useAppSelector(storeInput => storeInput.starWarReducer.people)
 
   return (
     <>
-      <h3>StarWars <button className="btn btn-success" onClick={getUser}>Get</button></h3>
+      <h3>StarWars <button type="button" className="btn btn-success" onClick={getUser}>Get</button></h3>
 
       <div>
         <h4>People:</h4> <hr />
         {peoples ? peoples.map((item) => (<p> <b> {item.name} </b>,{" "}
           height: {item.height},{" "}
           mass:{item.mass},{" "}
-          skin_color:{item.skin_color}
+          skin_color:{item.skinColor}
         </p>)) : <p>-</p>}
       </div>
 
@@ -47,7 +47,7 @@ function StarWars(): JSX.Element {
         <h4>Planets:</h4> <hr />
         {planets ? planets.map((item) => (<p> <b> {item.name} </b>,{" "}
           diameter: {item.diameter},{" "}
-          orbital_period:{item.orbital_period},{" "}
+          orbital_period:{item.orbitalPeriod},{" "}
           population:{item.population}
         </p>)) : <p>-</p>}
       </div>

@@ -1,35 +1,33 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import * as Yup from "yup";
+/* eslint-disable react/button-has-type */
+import 'react-datepicker/dist/react-datepicker.css';
 
-import { FormType } from "../../store/models";
-import style from "./Form.module.scss";
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import * as Yup from 'yup';
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { useAppSelector } from '../../store/hook';
+import { FormType } from '../../store/models';
+import style from './Form.module.scss';
 
-import { useAppDispatch, useAppSelector } from "../../store/hook";
-import { successConnected } from "../../routes/Main/components/store/action";
-import { useEffect, useState } from "react";
-
-type PropsArticleForm = {
-  // [key: string]: any;
+type PropsArticleForm = {  
   actionSubmit: (value: FormType) => void;
   actionCancel: () => void;
-  typeAction: "ADD" | "EDIT";
+  typeAction: 'ADD' | 'EDIT';
   initialVal: FormType;
 };
 
 const validationSchema = Yup.object({
   title: Yup.string()
-    .required("Required Title")
-    .max(20, " Length title is no more than 20 characters "),
+    .required('Required Title')
+    .max(20, ' Length title is no more than 20 characters '),
   text: Yup.string()
-    .required("Required text")
-    .min(5, "Length text is at least 5 characters"),
-  date: Yup.string().required("Required date"),
+    .required('Required text')
+    .min(5, 'Length text is at least 5 characters'),
+  date: Yup.string().required('Required date'),
   author: Yup.string()
-    .required("Required author")
-    .min(2, "Length name author is at least 2 characters "),
+    .required('Required author')
+    .min(2, 'Length name author is at least 2 characters '),
 });
 
 export function NewForm({
@@ -41,19 +39,19 @@ export function NewForm({
   const goHome = actionCancel;
 
   const successEdit = useAppSelector(
-    (store) => store.connectedReducer.editSuccess
+    (store) => store.connectedReducer.editSuccess,
   );
-  let picture64base = initialVal.picture64base;
+  let { picture64base } = initialVal;
 
   const submit = (
     values: FormType,
-    { setSubmitting }: { setSubmitting: (isSubmiting: boolean) => void }
+    { setSubmitting }: { setSubmitting: (isSubmiting: boolean) => void },
   ) => {
-    values.picture64base = picture64base;
-    actionSubmit(values);
-    console.log("values", values);
+    const editValues=values
+    editValues.picture64base = picture64base;
+    actionSubmit(values);    
     setSubmitting(false);
-    console.log("successEdit", successEdit);
+    
   };
 
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -64,7 +62,9 @@ export function NewForm({
       validationSchema={validationSchema}
       onSubmit={submit}
     >
-      {({ values, handleChange, handleBlur, handleReset, isSubmitting }) => (
+      {({
+        values, handleChange, handleBlur, handleReset, isSubmitting,
+      }) => (
         <Form className={style.form}>
           <div>
             <label htmlFor={style.title}> title : </label>
@@ -90,7 +90,7 @@ export function NewForm({
             />
             <p>
               <img
-                style={{ maxWidth: "320px", maxHeight: "320px" }}
+                style={{ maxWidth: '320px', maxHeight: '320px' }}
                 src={values.picture64base}
                 alt=""
               />
@@ -109,31 +109,29 @@ export function NewForm({
                 type="file"
                 className={style.input}
                 onChange={(event) => {
-                  const files = event.target.files;
-                  let reader = new FileReader();
+                  const { files } = event.target;
+                  const reader = new FileReader();
                   if (files) {
                     reader.readAsDataURL(files[0]);
                     reader.onload = (e) => {
                       // console.log(e.target?.result);
                       if (e.target?.result) {
                         picture64base = String(e.target?.result);
-                        // values.picture64base = String(e.target?.result);
-                        console.log(values);
+                        // values.picture64base = String(e.target?.result);                        
                       }
                     };
-                    console.log(
-                      "event",
-                      event,
-                      "values",
-                      values,
-                      "files",
-                      files
-                    );
+                    // console.log(
+                    //   'event',
+                    //   event,
+                    //   'values',
+                    //   values,
+                    //   'files',
+                    //   files,
+                    // );
                     handleChange(event);
                   }
                 }}
                 onBlur={handleBlur}
-                // value={values.picture}
               />
 
               {/* <Field
@@ -188,7 +186,8 @@ export function NewForm({
                 selected={selectedDate}
                 onChange={(date: Date) => {
                   setSelectedDate(date);
-                  values.date = date;
+                  const editValues =values
+                  editValues.date = date;
                 }}
                 name="date"
                 value={values.date}
@@ -203,13 +202,11 @@ export function NewForm({
           </div>
 
           <div className={style.formButton}>
-            {typeAction === "ADD" ? (
+            {typeAction === 'ADD' ? (
               <button
                 type="submit"
                 className="btn btn-success"
-                disabled={
-                  isSubmitting
-                } /*кнопка недоступна когда идет отправка*/
+                disabled={isSubmitting}
               >
                 Add
               </button>
@@ -217,9 +214,7 @@ export function NewForm({
               <button
                 type="submit"
                 className="btn btn-success"
-                disabled={
-                  isSubmitting
-                } /*кнопка недоступна когда идет отправка*/
+                disabled={isSubmitting}
               >
                 Save
               </button>
@@ -228,7 +223,7 @@ export function NewForm({
               type="button"
               className="btn btn-danger"
               onClick={() => goHome()}
-              disabled={isSubmitting} /*кнопка недоступна когда идет отправка*/
+              disabled={isSubmitting}
             >
               Cancel
             </button>

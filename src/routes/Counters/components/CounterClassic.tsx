@@ -8,8 +8,8 @@ function CounterClassic(): JSX.Element {
     (state) => state.counterClassicReducerObj.addVal
   );
 
-  const incrementNumber = (addVal: number) => {
-    dispatch(setIncrement(1));
+  const incrementNumber = (addval=1) => {
+    dispatch(setIncrement(addval));
   };
   // const st=useAppSelector(state=>state);
   // console.log(st);
@@ -37,7 +37,7 @@ function CounterClassic(): JSX.Element {
             }}
           />
 
-          <button
+          <button type="button"
             className="btn btn-success"
             aria-label="Increment value"
             onClick={() => dispatch(addVal(addValue))}
@@ -47,7 +47,7 @@ function CounterClassic(): JSX.Element {
         </div>
 
         <div>
-          <button
+          <button type="button"
             className="btn btn-primary"
             aria-label="Decrement value"
             onClick={() => {
@@ -59,7 +59,7 @@ function CounterClassic(): JSX.Element {
 
           <span style={{ padding: "5px 10px" }}>{count}</span>
 
-          <button
+          <button type="button"
             className="btn btn-danger"
             aria-label="Increment value"
             onClick={() => {

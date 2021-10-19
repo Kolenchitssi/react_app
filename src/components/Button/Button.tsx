@@ -1,9 +1,10 @@
 function Button(props: any): JSX.Element {
-  const typeButton: string = `btn btn-${props.typeButton}`;
+  const {typeButton, onClick, textButton}=props
+  const typeBtn: string = `btn btn-${typeButton}`;
   return (
-    <button type="button" className={typeButton} onClick={props.onClick}>
+    <button type="button" className={typeBtn} onClick={onClick}>
       {" "}
-      {props.textButton}
+      {textButton}
     </button>
   );
 }

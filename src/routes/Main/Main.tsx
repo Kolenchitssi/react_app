@@ -8,9 +8,9 @@ import { RootState } from "../../store/models";
 import Article from "./components/Article/Article";
 import SelectApp from "./components/SelectApp/SelectApp";
 import style from "./Main.module.scss";
-import { getArticle, GET_ARTICLE } from "./modules/store/action";
+import { getArticle } from "./modules/store/action";
 
-// ======================= create reselect===================================================
+// =======================  create reselect===================================================
 
 const articlesSelector = createSelector(
   (state: RootState) => state.reducerStarter,
@@ -28,8 +28,8 @@ const articlesSelector = createSelector(
 const Main = React.memo((): JSX.Element => {
   const history = useHistory();
 
-  const [perPage, setPerPage] = useState(3); //количество статей на странице
-  const [currentPage, setCurrentPage] = useState(1); //текущая страница
+  const [perPage, setPerPage] = useState(3); // количество статей на странице
+  const [currentPage, setCurrentPage] = useState(1); // текущая страница
   const articleCount: number = useAppSelector(
     (state) => state.reducerStarter
   ).length;
@@ -42,7 +42,7 @@ const Main = React.memo((): JSX.Element => {
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    console.log("use effect start");
+    // console.log("use effect start");
     dispatch(getArticle());
   }, []);
 
@@ -78,10 +78,10 @@ const Main = React.memo((): JSX.Element => {
           pageCount={pageCount}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
+          // initialSetPageCount={1}
         />
       </div>
-      {articles.map((items) => {
-        return (
+      {articles.map(items =>(
           <Article
             id={items.id}
             title={items.title}
@@ -92,8 +92,8 @@ const Main = React.memo((): JSX.Element => {
             picture={items.picture}
             picture64base={items.picture64base}
           />
-        );
-      })}
+        )
+      )}
       <div className={style.NumberedDisplayedPages}>
         <SelectApp
           perPage={perPage}

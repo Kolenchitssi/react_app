@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.scss";
+import { History } from "history";
 import Footer from "./components/Footer/Footer";
 import Header from "./containers/Header/Header";
 import MyRouter from "./routes/MyRouter";
-import { History } from "history";
 
 export interface AppProps {
   history: History;

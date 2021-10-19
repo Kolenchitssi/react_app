@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "../../../../components/Button/Button";
 import { useAppDispatch } from "../../../../store/hook";
 import { FormType } from "../../../../store/models";
-import {
-  removeArticle,
+import {  
   removeArticleLocalStorage,
 } from "../../modules/store/action";
 import styles from "./Article.module.scss";
@@ -20,7 +19,8 @@ import styles from "./Article.module.scss";
 // };
 
 function Article(props: FormType): JSX.Element {
-  //button Delete забрать список всех статей и по id  найти и удалить из массива
+  const {id,title,text, picture64base,author, date }=props;
+  // button Delete забрать список всех статей и по id  найти и удалить из массива
 
   // const deleteArticle = (e: any) => {
   //   console.log(e);
@@ -30,20 +30,20 @@ function Article(props: FormType): JSX.Element {
   const dispatch = useAppDispatch();
   return (
     <article className={styles.article}>
-      <Link to={`/article/${props.id}/view`} className="nav-link">
-        <h4>{props.title}</h4>
+      <Link to={`/article/${id}/view`} className="nav-link">
+        <h4>{title}</h4>
       </Link>
       <div className={styles.articleText}>
         <p className={styles.textArea}>
-          {props.text}
-          {props.picture64base !== undefined ? (
+          {text}
+          {picture64base !== undefined ? (
             <img
               style={{ maxWidth: "80px", maxHeight: "80px" }}
-              src={props.picture64base}
+              src={picture64base}
               alt=""
             />
           ) : (
-            <span></span>
+            <span> </span>
           )}
         </p>
 
@@ -65,11 +65,11 @@ function Article(props: FormType): JSX.Element {
         />
       </div>
       <div className={styles.author}>
-        <p>{String(props.date)}</p>
+        <p>{String(date)}</p>
         <p>
           {"\u00A0"} | {"\u00A0"}
         </p>
-        <p>{props.author}</p>
+        <p>{author}</p>
       </div>
     </article>
   );

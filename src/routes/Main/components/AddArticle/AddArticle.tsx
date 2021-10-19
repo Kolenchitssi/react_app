@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { useHistory } from "react-router";
 import { useAppDispatch } from "../../../../store/hook";
 import { FormType } from "../../../../store/models";
@@ -23,8 +24,7 @@ export const AddArticle = () => {
   };
 
   const submitAdd = (
-    values: FormType
-    // { setSubmitting }: { setSubmitting: (isSubmiting: boolean) => void }
+    values: FormType   
   ) => {
     values.id = String(Math.floor(Math.random() * 100000)) + values.author;
     values.key = values.id;

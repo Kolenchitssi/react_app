@@ -18,17 +18,13 @@ const options: SelectOption[] = [
 ];
 
 type Props = {
-  perPage: number; //количество статей на странице
+  perPage: number; // количество статей на странице
   setPerPage: (arg: number) => void;
-  pageCount: number; //количество страниц
+  pageCount: number; // количество страниц
   currentPage: number;
   setCurrentPage: (arg: number) => void;
-  initialSetPageCount?: number;
-} & typeof defaultProps;
-
-const defaultProps = {
-  initialSetPageCount: 4,
-};
+  // initialSetPageCount: number;
+} 
 
 function SelectApp({
   perPage,
@@ -55,7 +51,7 @@ function SelectApp({
   );
 
   return (
-    <Fragment>
+    <>
       <div className={style.wrapper}>
         <div className={style.numberPages}>
           <span> The number of displayed pages:</span>
@@ -69,38 +65,38 @@ function SelectApp({
           <div>
             <div className={style.paginate}>
               <ReactPaginate
-                pageCount={pageCount} //количество страниц
-                pageRangeDisplayed={3} //количество цифр в центре
-                marginPagesDisplayed={2} //количество цифр по краям
-                previousLabel={"previous"}
-                nextLabel={"next"}
-                breakLabel={"..."}
-                breakClassName={"break-class"}
-                breakLinkClassName={"break-link"}
+                pageCount={pageCount} // количество страниц
+                pageRangeDisplayed={3} // количество цифр в центре
+                marginPagesDisplayed={2} // количество цифр по краям
+                previousLabel="previous"
+                nextLabel="next"
+                breakLabel="..."
+                breakClassName="break-class"
+                breakLinkClassName="break-link"
                 onPageChange={memoizeHandlePageClick}
-                initialPage={0} //стартовая страница
-                forcePage={currentPage} //текущая страница
+                initialPage={0} // стартовая страница
+                forcePage={currentPage} // текущая страница
                 disableInitialCallback={false}
-                containerClassName={"container"}
-                pageClassName={"page-li"}
-                pageLinkClassName={"page-a"}
-                activeClassName={"active"}
+                containerClassName="container"
+                pageClassName="page-li"
+                pageLinkClassName="page-a"
+                activeClassName="active"
                 activeLinkClassName={style.activeLink}
-                previousClassName={"previous-li"}
-                nextClassName={"next-li"}
-                previousLinkClassName={"previous-a"}
-                nextLinkClassName={"next-a"}
-                disabledClassName={"disabled"}
-                extraAriaContext={"aria"}
+                previousClassName="previous-li"
+                nextClassName="next-li"
+                previousLinkClassName="previous-a"
+                nextLinkClassName="next-a"
+                disabledClassName="disabled"
+                extraAriaContext="aria"
               />
             </div>
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 }
 
-SelectApp.defaultProps = defaultProps;
+// SelectApp.defaultProps = defaultProps;
 
 export default SelectApp;

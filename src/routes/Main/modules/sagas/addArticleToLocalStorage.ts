@@ -6,13 +6,11 @@ import { getLocalStorage } from "../asistansFunction/getLocalStorage";
 import refreshLocalStorage from "../asistansFunction/refreshLocalStorage1";
 import { addArticle, ADD_ARTICLE_LOCALSTORAGE } from "../store/action";
 
-export function* watchClickAddSaga() {
-  yield takeEvery(ADD_ARTICLE_LOCALSTORAGE, addArticleWorker);
-}
+
 
 function* addArticleWorker(action: BaseAction<FormType>) {
   yield delay(500);
-  yield console.log("start add article");
+  // yield console.log("start add article");
   const pictureWay = action.payload.picture;
 
   const currentLocalStorage: FormType[] = yield getLocalStorage();
@@ -26,4 +24,8 @@ function* addArticleWorker(action: BaseAction<FormType>) {
   } else {
     alert("ERROR: STOP DED");
   }
+}
+
+export function* watchClickAddSaga() {
+  yield takeEvery(ADD_ARTICLE_LOCALSTORAGE, addArticleWorker);
 }
