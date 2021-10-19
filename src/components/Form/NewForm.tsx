@@ -4,10 +4,12 @@ import * as Yup from "yup";
 import { FormType } from "../../store/models";
 import style from "./Form.module.scss";
 
-import { DateForm } from "../DateForm/DateForm";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { successConnected } from "../../routes/Main/components/store/action";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type PropsArticleForm = {
   // [key: string]: any;
@@ -53,6 +55,8 @@ export function NewForm({
     setSubmitting(false);
     console.log("successEdit", successEdit);
   };
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
     <Formik
@@ -160,7 +164,7 @@ export function NewForm({
               </span>
             </div>
 
-            <div>
+            {/* <div>
               <label htmlFor={style.date}> date : </label>
 
               <Field
@@ -173,15 +177,29 @@ export function NewForm({
               <span className={style.errors}>
                 <ErrorMessage name="date" />
               </span>
-            </div>
+            </div> */}
 
-            {/* <div>
-            <label htmlFor={style.date}> date : </label>
-            <DateForm name="date" id={style.date} />
-            <span className={style.errors}>
-              <ErrorMessage name="date" />
-            </span>
-          </div> */}
+            <div>
+              <label htmlFor={style.date}> date : </label>
+
+              <Field
+                as={DatePicker}
+                id={style.date}
+                selected={selectedDate}
+                onChange={(date: Date) => {
+                  setSelectedDate(date);
+                  values.date = date;
+                }}
+                name="date"
+                value={values.date}
+                dateFormat="dd/MM/yyyy"
+                minDate={new Date(2021, 8, 1)}
+                maxDate={new Date()}
+              />
+              <span className={style.errors}>
+                <ErrorMessage name="date" />
+              </span>
+            </div>
           </div>
 
           <div className={style.formButton}>

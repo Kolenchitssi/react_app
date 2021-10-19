@@ -3,8 +3,8 @@ import { FormType } from "../../../../store/models";
 export const articlesList: Array<FormType> = [
   {
     id: "1",
-    title: "Title1",
-    text: "Text text  text text text text text text text text text 1111111111",
+    title: "First Article",
+    text: "Hallo am pockemons! Pica pica!!!",
     date: new Date(),
     picture: "",
     picture64base:
