@@ -1,0 +1,30 @@
+.main {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-end;
+  font-size: calc(4px + 1vmin);
+  background-color: #dddde9;
+  color: black;
+}
+
+.NumberedDisplayedPages {
+  display: flex;
+  min-width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mainHeader {
+  display: flex;
+  min-width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 600;
+}
+
+.spanCount {
+  font-size: 1rem;
+  font-weight: 700;
+}

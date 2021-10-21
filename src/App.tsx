@@ -1,16 +1,19 @@
-import React from 'react';
-import './App.scss';
-import Footer from './layout/Footer/Footer';
-import Main from './layout/Main/Main';
-import Header from './layout/Header/Header';
-import Router from './routes/Router';
+import React from "react";
+import "./App.scss";
+import { History } from "history";
+import Footer from "./components/Footer/Footer";
+import Header from "./containers/Header/Header";
+import MyRouter from "./routes/MyRouter";
 
-function App(): JSX.Element {
+export interface AppProps {
+  history: History;
+}
+
+function App({ history }: AppProps): JSX.Element {
   return (
-    <div className="App" >
+    <div className="App">
       <Header />
-      <Main />
-      <Router />
+      <MyRouter history={history} />
       <Footer />
     </div>
   );

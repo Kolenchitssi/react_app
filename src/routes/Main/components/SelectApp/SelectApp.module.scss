@@ -1,0 +1,50 @@
+.select {
+  color: blueviolet;
+
+  min-width: 100px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.numberPages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.paginate {
+  background-color: rgb(192, 232, 235);
+
+  .activeLink {
+    color: rgb(255, 0, 140);
+    font-weight: 900;
+  }
+
+  ul {
+    border: 1px solid darkblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    li {
+      padding: 5px 1px;
+      font-weight: 700;
+
+      a {
+        text-decoration: none;
+        color: darkblue;
+
+        &:hover {
+          color: red;
+        }
+      }
+    }
+  }
+}

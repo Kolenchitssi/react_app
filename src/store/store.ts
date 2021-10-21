@@ -1,23 +1,40 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { createBrowserHistory, History } from 'history';
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
-import counterReducer from '../components/Counter/counterSliceReducer';
-import {reducer as counterNewReducer} from '../components/Counter/counterNewReducer';
+import { counterClassicReducerObj } from '../routes/Counters/store/reducer';
+import { connectedReducer } from '../routes/Main/modules/store/reducerConnected';
+import { reducerStarter } from '../routes/Main/modules/store/reducer';
+import { starWarReducer } from '../routes/StarWars/store/reducer';
+import { rootSaga } from './rootSaga';
 
-const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-    newCounter: counterNewReducer,
+const sagaMiddleware = createSagaMiddleware();
+
+let composeEnhancers = compose;
+
+if (process.env.NODE_ENV === 'development') {
+  if (
+    typeof (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function'
+  ) {
+    composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
   }
-})
+}
 
+export const history = createBrowserHistory();
 
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch = () => useDispatch<AppDispatch>()
-// Export a hook that can be reused to resolve types
+const rootReducer = (historyRouter: History) =>
+  combineReducers({
+    router: connectRouter(historyRouter), // !The required key name is important = router
+    counterClassicReducerObj,
+    reducerStarter,
+    starWarReducer,
+    connectedReducer,
+  });
 
-export default store;
+export const store = createStore(
+  rootReducer(history),
+  composeEnhancers(applyMiddleware(sagaMiddleware, routerMiddleware(history))) // Saga
+);
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>
-
+sagaMiddleware.run(rootSaga);
