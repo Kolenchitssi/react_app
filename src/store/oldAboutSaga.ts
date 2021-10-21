@@ -34,7 +34,7 @@ import {
   REMOVE_ARTICLE_LOCALSTORAGE,
   SET_ARTICLE_TO_STATE,
 } from '../routes/Main/modules/store/action';
-import { articlesList } from '../routes/Main/components/Article/articlesList';
+import { articlesList } from '../routes/Article/articlesList';
 import { ActionType } from '@redux-saga/types';
 import {
   watchClickRemoveSaga,

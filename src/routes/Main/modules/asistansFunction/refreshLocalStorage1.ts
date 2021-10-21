@@ -1,9 +1,6 @@
-import { FormType, RootState } from "../../../../store/models";
-
-// export const refresh = (store: RootState) =>
-//   localStorage.setItem("articles", JSON.stringify(store.reducerStarter));
+import { FormType, RootState } from '../../../../store/models';
 
 const refreshLocalStorage = (newLocalStorage: FormType[]) =>
-  localStorage.setItem("articles", JSON.stringify(newLocalStorage));
+  localStorage.setItem('articles', JSON.stringify(newLocalStorage));
 
 export default refreshLocalStorage;

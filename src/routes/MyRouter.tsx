@@ -1,55 +1,49 @@
-import { ConnectedRouter } from "connected-react-router";
-import { lazy, Suspense } from "react";
-import { Route, Switch } from "react-router";
-import { BrowserRouter, NavLink } from "react-router-dom";
-import { AppProps } from "../App";
+import { ConnectedRouter } from 'connected-react-router';
+import { lazy, Suspense } from 'react';
+import { Route, Switch } from 'react-router';
+import { BrowserRouter, NavLink } from 'react-router-dom';
+import { AppProps } from '../App';
 
 // import { Router, Route, browserHistory } from 'react-router'
 // import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
-import { AddArticle } from "./Main/components/AddArticle/AddArticle";
-import { EditArticle } from "./Main/components/EditArticle/EditArticle";
-import { ViewArticle } from "./Main/components/ViewArticle/ViewArticle";
-import StarWars from "./StarWars/StarWars";
+import { AddArticle } from './AddArticle/AddArticle';
+import { EditArticle } from './EditArticle/EditArticle';
+import { ViewArticle } from './Main/ViewArticle/ViewArticle';
+import StarWars from './StarWars/StarWars';
 
-// import About from "./About/About";
-// import Counters from "./Counters/Counters";
-// import Main from "./Main/Main";
-// import NotFound from "./NotFound/NotFound";
-
-const About = lazy(() => import("./About/About"));
-const Main = lazy(() => import("./Main/Main"));
-const Counters = lazy(() => import("./Counters/Counters"));
-const NotFound = lazy(() => import("./NotFound/NotFound"));
-// const Modal = lazy(() => import("./Main/Modal/Modal"));
+const About = lazy(() => import('./About/About'));
+const Main = lazy(() => import('./Main/Main'));
+const Counters = lazy(() => import('./Counters/Counters'));
+const NotFound = lazy(() => import('./NotFound/NotFound'));
 
 function MyRouter({ history }: AppProps): JSX.Element {
   return (
     <ConnectedRouter history={history}>
       <div>
         <nav>
-          <ul style={{ display: "flex", justifyContent: "space-evenly" }}>
+          <ul style={{ display: 'flex', justifyContent: 'space-evenly' }}>
             <li>
-              <NavLink className="nav-link" to="/">
+              <NavLink className='nav-link' to='/'>
                 Home
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/about"
-                className="nav-link"
-                activeClassName="hurray"
+                to='/about'
+                className='nav-link'
+                activeClassName='hurray'
               >
                 About
               </NavLink>
             </li>
             <li>
-              <NavLink to="/counters" className="nav-link">
+              <NavLink to='/counters' className='nav-link'>
                 Counters
               </NavLink>
             </li>
             <li>
-              <NavLink to="/sw" className="nav-link">
+              <NavLink to='/sw' className='nav-link'>
                 StarWars
               </NavLink>
             </li>
@@ -58,25 +52,25 @@ function MyRouter({ history }: AppProps): JSX.Element {
 
         <Suspense fallback={<div> Loading... </div>}>
           <Switch>
-            <Route exact path="/">
+            <Route exact path='/'>
               <Main />
             </Route>
-            <Route path="/about">
+            <Route path='/about'>
               <About />
             </Route>
-            <Route path="/counters">
+            <Route path='/counters'>
               <Counters />
             </Route>
-            <Route path="/sw">
+            <Route path='/sw'>
               <StarWars />
             </Route>
-            <Route path="/article/:id/view">
+            <Route path='/article/:id/view'>
               <ViewArticle />
             </Route>
-            <Route path="/article/:id/edit">
+            <Route path='/article/:id/edit'>
               <EditArticle />
             </Route>
-            <Route path="/article/add">
+            <Route path='/article/add'>
               <AddArticle />
             </Route>
             <Route>

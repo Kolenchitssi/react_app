@@ -1,10 +1,8 @@
-import { BaseAction, ReducerType } from "./models";
+import { BaseAction, ReducerType } from './models';
 
 export function createAction<B>(type: string): (payload: B) => BaseAction<B> {
   return (payload: B) => ({ type, payload });
 }
-
-// numberAction=createAction<number>("INCREMENT");
 
 export function createReducer<S>(
   listReducer: ReducerType<S>,
@@ -13,5 +11,3 @@ export function createReducer<S>(
   return (state = defaultState, action: BaseAction<any>): S =>
     listReducer[action.type] ? listReducer[action.type](state, action) : state;
 }
-
-// createReduce

@@ -1,6 +1,6 @@
-import { BaseAction, ReducerType } from "../../../store/models";
-import { createReducer } from "../../../store/utils";
-import { ADD_VAL, DECREMENT, INCREMENT, SET_VAL } from "./action";
+import { BaseAction, ReducerType } from '../../../store/models';
+import { createReducer } from '../../../store/utils';
+import { ADD_VAL, DECREMENT, INCREMENT, SET_VAL } from './action';
 
 type StateLocal = {
   count: number;
@@ -34,12 +34,3 @@ export const counterClassicReducerObj = createReducer<StateLocal>(
   listReducer,
   defaultState
 );
-
-// export function counterClassicReducerObj(
-//   state = defaultState,
-//   action: actionCounter
-// ): StateLocal {
-//   return listReducer[action.type]
-//     ? listReducer[action.type](state, action)
-//     : state;
-// }

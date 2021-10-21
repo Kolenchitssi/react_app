@@ -1,62 +1,57 @@
-import { useAppSelector } from "../../../../store/hook";
-import { BaseAction, FormType, ReducerType } from "../../../../store/models";
-import { createReducer } from "../../../../store/utils";
+import { useAppSelector } from '../../../../store/hook';
+import { BaseAction, FormType, ReducerType } from '../../../../store/models';
+import { createReducer } from '../../../../store/utils';
 
-import { articlesList } from "../../components/Article/articlesList";
+import { articlesList } from '../../../Article/articlesList';
 import {
   ADD_ARTICLE,
   EDIT_ARTICLE,
   GET_ARTICLE,
   REMOVE_ARTICLE,
   SET_ARTICLE_TO_STATE,
-} from "./action";
+} from './action';
 
 type StateLocal = FormType[];
 
 const initialState = [
   {
-    id: "",
-    key: "",
-    title: "",
-    text: "",
-    picture: "",
+    id: '',
+    key: '',
+    title: '',
+    text: '',
+    picture: '',
     date: new Date(),
-    author: "",
+    author: '',
   },
 ];
 
-const defaultState: StateLocal = initialState; // getLocalStorage();
+const defaultState: StateLocal = initialState;
 
 const listReducer: ReducerType<StateLocal> = {
   [ADD_ARTICLE]: (
     state: StateLocal,
     action: BaseAction<FormType>
-  ): StateLocal =>  state.concat(action.payload),
+  ): StateLocal => state.concat(action.payload),
 
-  // [GET_ARTICLE]: (
-  //   state: StateLocal,
-  //   action: BaseAction<FormType[]>
-  // ): StateLocal => {
-  //   console.log(action.payload);
-  //   return state;
-  // },
-
-  // записывает в стэйт  список артиклей  считаных из LocalStorage
   [SET_ARTICLE_TO_STATE]: (
     state: StateLocal,
     action: BaseAction<FormType[]>
-  ): StateLocal =>  action.payload,
+  ): StateLocal => action.payload,
 
   [REMOVE_ARTICLE]: (
     state: StateLocal,
     action: BaseAction<string>
-  ): StateLocal =>  state.filter((item) =>  item.id !== action.payload),
+  ): StateLocal => state.filter(item => item.id !== action.payload),
 
   [EDIT_ARTICLE]: (
     state: StateLocal,
     action: BaseAction<FormType>
-  ): StateLocal => state.map((item) => { if (item.id === action.payload.id) {return action.payload; } 
-     return item;
+  ): StateLocal =>
+    state.map(item => {
+      if (item.id === action.payload.id) {
+        return action.payload;
+      }
+      return item;
     }),
 };
 
@@ -64,12 +59,3 @@ export const reducerStarter = createReducer<StateLocal>(
   listReducer,
   defaultState
 );
-
-// export function reducerStarter(
-//   state = defaultState,
-//   action: BaseAction<ArticleType>
-// ): StateLocal {
-//   return listReducer[action.type]
-//     ? listReducer[action.type](state, action)
-//     : state;
-// }

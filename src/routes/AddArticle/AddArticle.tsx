@@ -1,19 +1,19 @@
 /* eslint-disable no-param-reassign */
-import { useHistory } from "react-router";
-import { useAppDispatch } from "../../../../store/hook";
-import { FormType } from "../../../../store/models";
-import { addArticleToLocalStorage } from "../../modules/store/action";
+import { useHistory } from 'react-router';
+import { useAppDispatch } from '../../store/hook';
+import { FormType } from '../../store/models';
+import { addArticleToLocalStorage } from '../Main/modules/store/action';
 // import { PropsArticle } from "../Article/Article";
-import { NewForm } from "../../../../components/Form/NewForm";
+import { NewForm } from '../../components/Form/NewForm';
 
 const initialValue = {
-  title: "",
-  text: "",
+  title: '',
+  text: '',
   date: new Date(),
-  picture: "",
-  author: "",
-  id: "",
-  key: "",
+  picture: '',
+  author: '',
+  id: '',
+  key: '',
 };
 
 export const AddArticle = () => {
@@ -23,19 +23,16 @@ export const AddArticle = () => {
     dispatch(addArticleToLocalStorage(currentArticles));
   };
 
-  const submitAdd = (
-    values: FormType   
-  ) => {
+  const submitAdd = (values: FormType) => {
     values.id = String(Math.floor(Math.random() * 100000)) + values.author;
     values.key = values.id;
 
     addNewArticle(values);
-    // setSubmitting(false);
   };
 
   const history = useHistory();
   const goHome = () => {
-    history.push("/");
+    history.push('/');
   };
 
   return (
@@ -43,7 +40,7 @@ export const AddArticle = () => {
       <NewForm
         actionSubmit={submitAdd}
         actionCancel={goHome}
-        typeAction="ADD"
+        typeAction='ADD'
         initialVal={initialValue}
       />
     </>

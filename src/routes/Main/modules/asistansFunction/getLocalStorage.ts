@@ -1,10 +1,10 @@
-import { articlesList } from "../../components/Article/articlesList";
+import { articlesList } from '../../../Article/articlesList';
 
 export const getLocalStorage = () => {
-  if (!localStorage.length || !localStorage.getItem("articles")) {
-    localStorage.setItem("articles", JSON.stringify(articlesList));
+  if (!localStorage.length || !localStorage.getItem('articles')) {
+    localStorage.setItem('articles', JSON.stringify(articlesList));
   }
-  const localStorageList = localStorage.getItem("articles") || "";
+  const localStorageList = localStorage.getItem('articles') || '';
 
   return JSON.parse(localStorageList);
 };

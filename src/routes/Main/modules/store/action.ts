@@ -1,15 +1,15 @@
 // import { BaseAction } from "../../../../store/models";
-import { FormType } from "../../../../store/models";
-import { createAction } from "../../../../store/utils";
+import { FormType } from '../../../../store/models';
+import { createAction } from '../../../../store/utils';
 
-export const ADD_ARTICLE = "ADD_ARTICLE";
-export const REMOVE_ARTICLE = "REMOVE_ARTICLE";
-export const EDIT_ARTICLE = "EDIT_ARTICLE";
-export const GET_ARTICLE = "GET_ARTICLE";
-export const SET_ARTICLE_TO_STATE = "SET_ARTICLE_TO_STATE";
-export const REMOVE_ARTICLE_LOCALSTORAGE = "REMOVE_ARTICLE_LOCALSTORAGE";
-export const ADD_ARTICLE_LOCALSTORAGE = "ADD_ARTICLE_LOCALSTORAGE";
-export const EDIT_ARTICLE_LOCALSTORAGE = "EDIT_ARTICLE_LOCALSTORAGE";
+export const ADD_ARTICLE = 'ADD_ARTICLE';
+export const REMOVE_ARTICLE = 'REMOVE_ARTICLE';
+export const EDIT_ARTICLE = 'EDIT_ARTICLE';
+export const GET_ARTICLE = 'GET_ARTICLE';
+export const SET_ARTICLE_TO_STATE = 'SET_ARTICLE_TO_STATE';
+export const REMOVE_ARTICLE_LOCALSTORAGE = 'REMOVE_ARTICLE_LOCALSTORAGE';
+export const ADD_ARTICLE_LOCALSTORAGE = 'ADD_ARTICLE_LOCALSTORAGE';
+export const EDIT_ARTICLE_LOCALSTORAGE = 'EDIT_ARTICLE_LOCALSTORAGE';
 
 export const addArticle = createAction<FormType>(ADD_ARTICLE);
 export const removeArticle = createAction<string>(REMOVE_ARTICLE);

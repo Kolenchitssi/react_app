@@ -1,6 +1,6 @@
-import { ReducerType } from "../../../../store/models";
-import { createReducer } from "../../../../store/utils";
-import { SUCCESS_CONNECTED } from "./action";
+import { ReducerType } from '../../../../store/models';
+import { createReducer } from '../../../../store/utils';
+import { SUCCESS_CONNECTED } from './actionConnected';
 
 type StateLocal = {
   [key: string]: any;
@@ -12,7 +12,8 @@ const defaultState: StateLocal = {
 
 const listReducer: ReducerType<StateLocal> = {
   [SUCCESS_CONNECTED]: (state, action) => ({
-    ...state, editSuccess: action.payload
+    ...state,
+    editSuccess: action.payload,
   }),
 };
 
