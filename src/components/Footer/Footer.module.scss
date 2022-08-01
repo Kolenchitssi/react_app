@@ -1,0 +1,10 @@
+.footer {
+  min-height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;  
+  font-size: calc(4px + 1vmin);
+  background-color: #1d2b47;
+  color: white;
+}

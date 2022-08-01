@@ -1,0 +1,10 @@
+.header {  
+  min-height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;  
+  font-size: calc(10px + 2vmin);
+  background-color: #1d2b47;
+  color: white;
+}
